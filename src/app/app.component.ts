@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {NavBarComponent} from './shared/nav-bar/nav-bar.component';
-import {FooterComponent} from './shared/footer/footer.component';
+import {NavBarComponent} from './shared/layout/nav-bar/nav-bar.component';
+import {FooterComponent} from './shared/layout/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,7 @@ import {FooterComponent} from './shared/footer/footer.component';
       display: grid;
       grid-template-rows: auto 1fr auto;
       min-height: 100svh;
+      background-color: var(--background-surface);
     }
   `]
 })

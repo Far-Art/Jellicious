@@ -4,4 +4,10 @@
   height: 100%;
   margin: 1rem;
   gap: 1rem;
+
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+  }
 }
