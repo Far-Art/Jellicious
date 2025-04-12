@@ -1,5 +1,39 @@
+host {
+  display: contents;
+}
+
 nav {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  padding-block: 1rem;
+  padding-block: 1em;
   background-color: var(--mat-sys-on-tertiary-fixed);
+
+  button[mat-button] {
+    margin-inline: 1em;
+    overflow: hidden;
+
+    &:hover, &:focus-visible {
+      span:not(.material-symbols-outlined) {
+        width: auto;
+        opacity: 1;
+      }
+    }
+
+
+    .material-symbols-outlined {
+      font-size: 2em;
+      margin-bottom: 0.1em;
+    }
+
+    span:not(.material-symbols-outlined) {
+      display: inline-block;
+      width: 0;
+      opacity: 0;
+      transition: width 200ms ease-in-out, opacity 200ms ease-in-out;
+    }
+  }
 }

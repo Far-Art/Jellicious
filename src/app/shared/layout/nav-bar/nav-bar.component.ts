@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
+import {MatList, MatListItem} from '@angular/material/list';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'jls-nav-bar',
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatList,
+    MatListItem,
+    MatButton
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss'
