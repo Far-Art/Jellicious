@@ -182,13 +182,14 @@ html {
 
   color-scheme: dark;
   color: white;
-  font-family: Rubik, sans-serif;
 
   @include mat.theme((
     color: (
       primary: $primary-palette,
-      tertiary: $tertiary-palette
+      tertiary: $tertiary-palette,
+      theme-type: dark,
     ),
+    typography: 'Rubik',
     density: 0,
   ));
 
