@@ -15,25 +15,28 @@ nav {
   button[mat-button] {
     margin-inline: 1em;
     overflow: hidden;
+    justify-content: flex-start;
+
+    .button-text {
+      display: flex;
+      align-items: center;
+    }
 
     &:hover, &:focus-visible {
       span:not(.material-symbols-outlined) {
-        width: auto;
-        opacity: 1;
+        width: 100%;
       }
     }
 
-
     .material-symbols-outlined {
       font-size: 2em;
-      margin-bottom: 0.1em;
     }
 
     span:not(.material-symbols-outlined) {
       display: inline-block;
+      overflow: hidden;
       width: 0;
-      opacity: 0;
-      transition: width 200ms ease-in-out, opacity 200ms ease-in-out;
+      transition: width 150ms ease-in-out;
     }
   }
 }

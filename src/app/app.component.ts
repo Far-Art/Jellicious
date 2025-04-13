@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {NavBarComponent} from './shared/layout/nav-bar/nav-bar.component';
 import {FooterComponent} from './shared/layout/footer/footer.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavBarComponent, FooterComponent],
+  imports: [RouterOutlet, NavBarComponent, FooterComponent, MatSnackBarModule],
   template: `
     <jls-nav-bar />
     <router-outlet />

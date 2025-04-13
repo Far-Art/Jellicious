@@ -7,7 +7,10 @@
 
   main {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-width: 400px;
     gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
 }

@@ -5,9 +5,29 @@
     width: 400px;
     height: fit-content;
 
+    .mat-mdc-card-title {
+      --mat-card-title-text-weight: 800;
+    }
+
     button {
       width: 100%;
       font-size: 1.2em;
+
+      span {
+        margin-inline: 0.15em;
+
+        &:first-child {
+          font-size: 0.9em;
+          font-weight: normal;
+        }
+
+        &.line-through {
+          text-decoration: line-through;
+          font-weight: lighter;
+          font-size: 0.9em;
+          color: var(--mat-sys-tertiary-fixed-dim);
+        }
+      }
     }
 
     .chip-text {

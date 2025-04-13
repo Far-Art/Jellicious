@@ -1,9 +1,5 @@
 <main>
-  <jls-package-card />
-  <jls-package-card />
-  <jls-package-card />
-  <jls-package-card />
-  <jls-package-card />
+  <jls-package-card *ngFor="let product of products" [package]="product" />
 </main>
 <aside>
   <jls-daily-product />

@@ -177,7 +177,6 @@ $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
 html {
   --background-surface: #180d1d;
   --mat-sys-title-large-size: 30px;
-  --mat-sys-title-large-weight: bold;
   --mdc-outlined-card-container-shape: 25px;
 
   color-scheme: dark;
@@ -194,12 +193,15 @@ html {
   ));
 
   .material-symbols-outlined {
-    vertical-align: middle;
     font-variation-settings:
       'FILL' 0,
       'wght' 200,
       'GRAD' 0,
       'opsz' 24
+  }
+
+  p {
+    font-family: 'Rubik', sans-serif;
   }
 
   @include mat.card-overrides((
