@@ -39,11 +39,7 @@ export class PackageCardComponent implements OnInit {
   constructor(private shoppingService: ShoppingService) { }
 
   ngOnInit(): void {
-    console.log(this.isInCart)
-    this.shoppingService.isInCart$(this.package).subscribe(isInCart => {
-      console.log(isInCart);
-      this.isInCart = isInCart
-    });
+    this.shoppingService.isInCart$(this.package).subscribe(isInCart => this.isInCart = isInCart);
     this.updateButtonLabel();
   }
 

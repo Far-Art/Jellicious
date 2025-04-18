@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Product} from '../model/ProductTypes';
 import {BehaviorSubject, filter, map, Observable, switchMap} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {CartDialogComponent} from '../components/cart-dialog/cart-dialog.component';
 
 
 export type CartProductData = { quantity: number, product: Product };
@@ -11,14 +13,14 @@ export type CartProductData = { quantity: number, product: Product };
 })
 export class ShoppingService {
 
-  private snackDurationMs = 3500;
+  private readonly snackDurationMs = 3500;
 
   private _isInCartSubject = new BehaviorSubject<void>(undefined);
   private _productDataSubject = new BehaviorSubject<void>(undefined);
 
   private cartMap: Map<number, BehaviorSubject<CartProductData>> = new Map();
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar, private dialog: MatDialog) { }
 
   addProduct(product: Product): void {
     const subject = this.cartMap.get(product.id) ?? new BehaviorSubject({
@@ -33,7 +35,7 @@ export class ShoppingService {
 
     this.cartMap.set(product.id, subject);
     this._isInCartSubject.next();
-    this.snackBar.open(`נוסף ${product.name} לסל: כמות ${subject.value.quantity}`, undefined, {duration: this.snackDurationMs});
+    this.snackBar.open(`${product.name} נוסף לסל הקניות: כמות ${subject.value.quantity}`, undefined, {duration: this.snackDurationMs, direction: 'rtl'});
   }
 
   productData$(product: Product): Observable<CartProductData> {
@@ -50,8 +52,12 @@ export class ShoppingService {
 
   removeProduct(product: Product): void {
     if (this.cartMap.delete(product.id)) {
-      this.snackBar.open(`${product.name}הוסר מסל קניות`, undefined, {duration: this.snackDurationMs});
+      this.snackBar.open(`${product.name} הוסר מסל קניות `, undefined, {duration: this.snackDurationMs, direction: 'rtl'});
     }
     this._isInCartSubject.next();
+  }
+
+  openCartDialog() {
+    this.dialog.open(CartDialogComponent, {position: {right: '0'}, height: '100%'});
   }
 }

@@ -179,29 +179,29 @@ html {
   --mat-sys-title-large-size: 30px;
   --mdc-outlined-card-container-shape: 25px;
 
-  color-scheme: dark;
+  color-scheme: only dark;
   color: white;
+  font-family: 'Rubik', sans-serif;
 
   @include mat.theme((
     color: (
       primary: $primary-palette,
-      tertiary: $tertiary-palette,
-      theme-type: dark,
+      tertiary: $tertiary-palette
     ),
     typography: 'Rubik',
     density: 0,
   ));
 
   .material-symbols-outlined {
-    font-variation-settings:
-      'FILL' 0,
-      'wght' 200,
-      'GRAD' 0,
-      'opsz' 24
+    font-variation-settings: 'FILL' 0,
+    'wght' 200,
+    'GRAD' 0,
+    'opsz' 24
   }
 
-  p {
-    font-family: 'Rubik', sans-serif;
+  .mdc-snackbar__label {
+    --mdc-snackbar-supporting-text-size: 1.1rem;
+    user-select: none;
   }
 
   @include mat.card-overrides((

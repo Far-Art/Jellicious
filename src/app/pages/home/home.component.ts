@@ -17,6 +17,8 @@ import {NgForOf} from '@angular/common';
 })
 export class HomeComponent {
 
+  showFiller = false;
+
   product1: Product = {
     id: 1,
     type: 'box',
