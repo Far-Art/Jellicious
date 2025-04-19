@@ -121,96 +121,111 @@ $_rest: (
 $primary-palette: map.merge(map.get($_palettes, primary), $_rest);
 $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
 
-@mixin high-contrast-overrides($theme-type) {
-  @include mat.theme-overrides((
-    primary: #5b003b,
-    on-primary: #ffffff,
-    primary-container: #8f005f,
-    on-primary-container: #ffffff,
-    inverse-primary: #ffafd3,
-    primary-fixed: #8f005f,
-    primary-fixed-dim: #660043,
-    on-primary-fixed: #ffffff,
-    on-primary-fixed-variant: #ffffff,
-    secondary: #002f47,
-    on-secondary: #ffffff,
-    secondary-container: #004e72,
-    on-secondary-container: #ffffff,
-    secondary-fixed: #004e72,
-    secondary-fixed-dim: #003651,
-    on-secondary-fixed: #ffffff,
-    on-secondary-fixed-variant: #ffffff,
-    tertiary: #550c3a,
-    on-tertiary: #ffffff,
-    tertiary-container: #7a2c58,
-    on-tertiary-container: #ffffff,
-    tertiary-fixed: #7a2c58,
-    tertiary-fixed-dim: #5e1441,
-    on-tertiary-fixed: #ffffff,
-    on-tertiary-fixed-variant: #ffffff,
-    background: #fff8f8,
-    on-background: #25181e,
-    surface: #fff8f8,
-    surface-dim: #cab3bb,
-    surface-bright: #fff8f8,
-    surface-container-lowest: #ffffff,
-    surface-container: #f5dce5,
-    surface-container-high: #e6ced7,
-    surface-container-highest: #d8c0c9,
-    on-surface: #000000,
-    shadow: #000000,
-    scrim: #000000,
-    surface-tint: #b5007a,
-    inverse-surface: #3b2c33,
-    inverse-on-surface: #ffffff,
-    outline: #3b262f,
-    outline-variant: #5a434d,
-    error: #600015,
-    on-error: #ffffff,
-    error-container: #960026,
-    on-error-container: #ffffff,
-    surface-variant: #fbdae6,
-    on-surface-variant: #000000,
-  ))
+@mixin high-contrast-overrides() {
+    @include mat.theme-overrides((
+      primary: #5b003b,
+      on-primary: #ffffff,
+      primary-container: #8f005f,
+      on-primary-container: #ffffff,
+      inverse-primary: #ffafd3,
+      primary-fixed: #8f005f,
+      primary-fixed-dim: #660043,
+      on-primary-fixed: #ffffff,
+      on-primary-fixed-variant: #ffffff,
+      secondary: #002f47,
+      on-secondary: #ffffff,
+      secondary-container: #004e72,
+      on-secondary-container: #ffffff,
+      secondary-fixed: #004e72,
+      secondary-fixed-dim: #003651,
+      on-secondary-fixed: #ffffff,
+      on-secondary-fixed-variant: #ffffff,
+      tertiary: #550c3a,
+      on-tertiary: #ffffff,
+      tertiary-container: #7a2c58,
+      on-tertiary-container: #ffffff,
+      tertiary-fixed: #7a2c58,
+      tertiary-fixed-dim: #5e1441,
+      on-tertiary-fixed: #ffffff,
+      on-tertiary-fixed-variant: #ffffff,
+      background: #fff8f8,
+      on-background: #25181e,
+      surface: #fff8f8,
+      surface-dim: #cab3bb,
+      surface-bright: #fff8f8,
+      surface-container-lowest: #ffffff,
+      surface-container: #f5dce5,
+      surface-container-high: #e6ced7,
+      surface-container-highest: #d8c0c9,
+      on-surface: #000000,
+      shadow: #000000,
+      scrim: #000000,
+      surface-tint: #b5007a,
+      inverse-surface: #3b2c33,
+      inverse-on-surface: #ffffff,
+      outline: #3b262f,
+      outline-variant: #5a434d,
+      error: #600015,
+      on-error: #ffffff,
+      error-container: #960026,
+      on-error-container: #ffffff,
+      surface-variant: #fbdae6,
+      on-surface-variant: #000000,
+    ))
 }
 
 html {
-  --background-surface: #180d1d;
-  --mat-sys-title-large-size: 30px;
-  --mdc-outlined-card-container-shape: 25px;
+    --background-surface: #180d1d;
+    --mat-sys-title-large-size: 30px;
+    --mdc-outlined-card-container-shape: 25px;
 
-  color-scheme: only dark;
-  color: white;
-  font-family: 'Rubik', sans-serif;
+    color-scheme: dark;
+    color: white;
+    font-family: 'Rubik', sans-serif;
 
-  @include mat.theme((
-    color: (
-      primary: $primary-palette,
-      tertiary: $tertiary-palette
-    ),
-    typography: 'Rubik',
-    density: 0,
-  ));
+    @include mat.theme((
+      color: (
+        primary: $primary-palette,
+        tertiary: $tertiary-palette,
+        theme-type: dark,
+      ),
+      typography: 'Rubik',
+      density: 0,
+    ));
 
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0,
-    'wght' 200,
-    'GRAD' 0,
-    'opsz' 24
-  }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0,
+        'wght' 200,
+        'GRAD' 0,
+        'opsz' 24
+    }
 
-  .mdc-snackbar__label {
-    --mdc-snackbar-supporting-text-size: 1.1rem;
-    user-select: none;
-  }
+    .mdc-snackbar__label {
+        --mdc-snackbar-supporting-text-size: 1.1rem;
+        user-select: none;
+    }
 
-  @include mat.card-overrides((
-    subtitle-text-color: map.get(map.get($_palettes, primary), 25),
-    elevated-container-color: map.get(map.get($_palettes, primary), 25),
-  ));
+    @include mat.card-overrides((
+      subtitle-text-color: map.get(map.get($_palettes, primary), 25),
+      elevated-container-color: map.get(map.get($_palettes, primary), 25),
+    ));
 
-  // high contrast
-  @media (prefers-contrast: more) {
-    @include high-contrast-overrides(color-scheme);
-  }
+    // high contrast
+    @media (prefers-contrast: more) {
+        @include high-contrast-overrides();
+    }
+
+    @media (forced-colors: active) {
+        .logo {
+            filter: grayscale(1) brightness(4);
+        }
+
+        nav {
+            border-bottom: 1px solid white;
+        }
+
+        .mat-toolbar {
+            outline: none;
+        }
+    }
 }

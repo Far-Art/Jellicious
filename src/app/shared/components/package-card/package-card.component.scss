@@ -2,8 +2,11 @@
   display: contents;
 
   > .package-card {
-    width: 400px;
-    height: fit-content;
+    justify-content: space-between;
+
+    img {
+      user-select: none;
+    }
 
     .mat-mdc-card-title {
       --mat-card-title-text-weight: 800;

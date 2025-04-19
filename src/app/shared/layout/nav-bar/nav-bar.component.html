@@ -1,13 +1,33 @@
 <nav>
-  <img ngSrc="/assets/logo.png" alt="Jellicious logo" height="80" width="228">
-  <mat-list role="menubar">
-    <mat-list-item role="menuitem">
-      <button mat-button (click)="shoppingService.openCartDialog()">
-        <div class="button-text">
-          <span class="material-symbols-outlined" aria-hidden="true">shopping_bag</span>
-          <span>סל קניות</span>
+    <img  class="logo" ngSrc="/assets/logo.png" alt="Jellicious logo" height="80" width="228">
+    <mat-toolbar
+        role="menubar"
+        aria-label="שורת פעולות">
+        <button role="menuitem" color="primary" mat-button (click)="shoppingService.openCartDialog()">
+            <div class="button-text">
+                <span class="material-symbols-outlined" aria-hidden="true">shopping_bag</span>
+                <span>סל קניות</span>
+            </div>
+        </button>
+        <div>
+            <button role="menuitem" mat-button color="primary" (click)="shoppingService.openCartDialog()">
+                <div class="button-text">
+                    <span class="material-symbols-outlined" aria-hidden="true">featured_seasonal_and_gifts</span>
+                    <span>מארזים מתוקים</span>
+                </div>
+            </button>
+            <button role="menuitem" mat-button color="secondary" (click)="shoppingService.openCartDialog()">
+                <div class="button-text">
+                    <span class="material-symbols-outlined" aria-hidden="true">local_florist</span>
+                    <span>זרים מתוקים</span>
+                </div>
+            </button>
+            <button role="menuitem" mat-button color="tertiary" (click)="shoppingService.openCartDialog()">
+                <div class="button-text">
+                    <span class="material-symbols-outlined" aria-hidden="true">cookie</span>
+                    <span>מתוקים משלימים</span>
+                </div>
+            </button>
         </div>
-      </button>
-    </mat-list-item>
-  </mat-list>
+    </mat-toolbar>
 </nav>

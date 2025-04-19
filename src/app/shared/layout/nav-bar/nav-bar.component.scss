@@ -1,42 +1,39 @@
-host {
-  display: contents;
+:host {
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 nav {
-  position: relative;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding-block: 1em;
-  background-color: var(--mat-sys-on-tertiary-fixed);
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-block: 1em;
+    background-color: var(--mat-sys-on-tertiary-fixed);
 
-  button[mat-button] {
-    margin-inline: 1em;
-    overflow: hidden;
-    justify-content: flex-start;
-
-    .button-text {
-      display: flex;
-      align-items: center;
+    mat-toolbar {
+        background-color: transparent;
     }
 
-    &:hover, &:focus-visible {
-      span:not(.material-symbols-outlined) {
-        width: 100%;
-      }
-    }
+    button[mat-button] {
+        margin-inline: 1em;
+        overflow: hidden;
+        justify-content: flex-start;
 
-    .material-symbols-outlined {
-      font-size: 2em;
-    }
+        .button-text {
+            display: flex;
+            align-items: center;
 
-    span:not(.material-symbols-outlined) {
-      display: inline-block;
-      overflow: hidden;
-      width: 0;
-      transition: width 150ms ease-in-out;
+            > span:first-child {
+                margin-inline-start: 0.1em;
+            }
+        }
+
+        .material-symbols-outlined {
+            font-size: 2em;
+        }
     }
-  }
 }

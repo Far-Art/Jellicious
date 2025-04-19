@@ -1,27 +1,27 @@
 <mat-card class="package-card" appearance="outlined">
-  <img [draggable]="false" aria-hidden="true" mat-card-image [src]="package.imageUrl" alt="תצומה של {{package.name}}">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{ package.name }}</mat-card-title>
-    <mat-card-subtitle><span>{{ package.subtitle + ', ' }}</span> <span>{{package.weight + ' גרם'}}</span></mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>{{ package.description }}</p>
-  </mat-card-content>
-  <mat-card-footer>
-    <mat-chip-set aria-label="רשימת רכיבים">
-      <mat-chip *ngFor="let ingredient of package.ingredients">
-        <span class="chip-text">{{ ingredient.name }}</span>
-        <span aria-hidden="true">{{ ingredient.icon }}</span>
-      </mat-chip>
-    </mat-chip-set>
-  </mat-card-footer>
-  <mat-card-actions>
-    <button [attr.aria-label]="buttonLabel" mat-fab extended (click)="onButtonClick()">
-      <span *ngIf="!isInCart" aria-hidden="true">הוסף לסל</span>
-      <span *ngIf="isInCart" aria-hidden="true">הסר מסל</span>
-      <span aria-hidden="true" [class.line-through]="package.newPrice">₪{{ package.price }}</span>
-      <span aria-hidden="true" *ngIf="package.newPrice">₪{{ package.newPrice }}</span>
-    </button>
-  </mat-card-actions>
+    <img [draggable]="false" aria-hidden="true" mat-card-image [src]="package.imageUrl" alt="תצומה של {{package.name}}">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ package.name }}</mat-card-title>
+        <mat-card-subtitle><span>{{ package.subtitle + ', ' }}</span> <span>{{ package.weight + ' גרם' }}</span></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{ package.description }}</p>
+    </mat-card-content>
+    <mat-card-footer>
+        <mat-chip-set aria-label="רשימת רכיבים">
+            <mat-chip *ngFor="let ingredient of package.ingredients">
+                <span class="chip-text">{{ ingredient.name }}</span>
+                <span aria-hidden="true">{{ ingredient.icon }}</span>
+            </mat-chip>
+        </mat-chip-set>
+    </mat-card-footer>
+    <mat-card-actions>
+        <button [attr.aria-label]="buttonLabel" mat-fab extended (click)="onButtonClick()">
+            <span *ngIf="!isInCart" aria-hidden="true">הוסף לסל</span>
+            <span *ngIf="isInCart" aria-hidden="true">הסר מסל</span>
+            <span aria-hidden="true" [class.line-through]="package.newPrice">₪{{ package.price }}</span>
+            <span aria-hidden="true" *ngIf="package.newPrice">₪{{ package.newPrice }}</span>
+        </button>
+    </mat-card-actions>
 </mat-card>
