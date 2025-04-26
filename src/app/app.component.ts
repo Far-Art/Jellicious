@@ -11,7 +11,7 @@ import {Product} from './shared/model/ProductTypes';
   selector: 'app-root',
   imports: [RouterOutlet, NavBarComponent, FooterComponent, MatSnackBarModule, MatAnchor],
   template: `
-      <a mat-flat-button class="skip-link" href="#main-content">דלג לתוכן הראשי</a>
+      <a mat-flat-button class="skip-link" [href]="'#main-content'">דלג לתוכן הראשי</a>
       <jls-nav-bar />
 <!--          <aside>-->
 <!--              <jls-package-card [package]="product1" />-->
