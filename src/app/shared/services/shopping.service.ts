@@ -58,6 +58,6 @@ export class ShoppingService {
   }
 
   openCartDialog() {
-    this.dialog.open(CartDialogComponent, {position: {right: '0'}, height: '100%'});
+    this.dialog.open(CartDialogComponent, {position: {right: '0'}, height: '100vh'});
   }
 }

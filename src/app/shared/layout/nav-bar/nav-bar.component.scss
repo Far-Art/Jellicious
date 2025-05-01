@@ -16,24 +16,11 @@ nav {
 
     mat-toolbar {
         background-color: transparent;
+        justify-content: space-between;
     }
 
-    button[mat-button] {
-        margin-inline: 1em;
-        overflow: hidden;
-        justify-content: flex-start;
-
-        .button-text {
-            display: flex;
-            align-items: center;
-
-            > span:first-child {
-                margin-inline-start: 0.1em;
-            }
-        }
-
-        .material-symbols-outlined {
-            font-size: 2em;
-        }
+    .logo {
+        filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.5)) drop-shadow(4px 6px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 20px rgba(0, 0, 0, 0.1));
     }
+
 }
