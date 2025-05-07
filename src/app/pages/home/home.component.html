@@ -1,3 +1,5 @@
 <main id="main-content">
-    <jls-package-card *ngFor="let product of products" [package]="product" />
+    @for (product of products; track product.id) {
+        <jls-package-card [package]="product" />
+    }
 </main>

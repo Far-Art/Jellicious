@@ -1,0 +1,1 @@
+export type ProductType = 'box' | 'bouquet' | 'complementary';

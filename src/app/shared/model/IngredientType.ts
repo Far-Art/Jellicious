@@ -1,0 +1,1 @@
+export type IngredientType = 'candy' | 'gummy' | 'chocolate' | 'marshmello' | 'alcohol';

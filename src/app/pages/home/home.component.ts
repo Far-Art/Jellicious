@@ -1,21 +1,18 @@
 import {Component} from '@angular/core';
 import {PackageCardComponent} from '../../shared/components/package-card/package-card.component';
-import {Product} from '../../shared/model/ProductTypes';
-import {NgForOf} from '@angular/common';
+import {Product} from '../../shared/model/Product';
+import {JelliciousApiService} from '../../shared/services/jellicious-api.service';
 
 
 @Component({
     selector: 'jls-home',
     imports: [
-        PackageCardComponent,
-        NgForOf
+        PackageCardComponent
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-
-    showFiller = false;
 
     product1: Product = {
         id: 1,
@@ -29,29 +26,37 @@ export class HomeComponent {
         imageUrl: '/assets/boxes/box1.jpg',
         ingredients: [
             {
-                id: 1,
-                type: 'gummy',
-                name: 'סוכריות גומי',
-                icon: '🍬',
-                price: 0.15
+                ingredient: {
+                    id: 1,
+                    type: 'gummy',
+                    name: 'סוכריות גומי',
+                    icon: '🍬',
+                    price: 0.15
+                },
+                amount: 1
             },
             {
-                id: 2,
-                type: 'marshmello',
-                name: 'מרשמלו',
-                icon: '🍡',
-                price: 0.15
+                ingredient: {
+                    id: 2,
+                    type: 'marshmello',
+                    name: 'מרשמלו',
+                    icon: '🍡',
+                    price: 0.15
+                },
+                amount: 1
             },
             {
-                id: 3,
-                type: 'chocolate',
-                name: 'סוכריות שוקולד',
-                icon: '🍫',
-                price: 0.15
+                ingredient: {
+                    id: 3,
+                    type: 'chocolate',
+                    name: 'סוכריות שוקולד',
+                    icon: '🍫',
+                    price: 0.15
+                },
+                amount: 1
             }
         ]
     }
-
     product2: Product = {
         id: 2,
         type: 'box',
@@ -64,28 +69,43 @@ export class HomeComponent {
         imageUrl: '/assets/boxes/box2.jpg',
         ingredients: [
             {
-                id: 1,
-                type: 'gummy',
-                name: 'סוכריות גומי',
-                icon: '🍬',
-                price: 0.15
+                ingredient: {
+                    id: 1,
+                    type: 'gummy',
+                    name: 'סוכריות גומי',
+                    icon: '🍬',
+                    price: 0.15
+                },
+                amount: 1
             },
             {
-                id: 2,
-                type: 'marshmello',
-                name: 'מרשמלו',
-                icon: '🍡',
-                price: 0.15
+                ingredient: {
+                    id: 2,
+                    type: 'marshmello',
+                    name: 'מרשמלו',
+                    icon: '🍡',
+                    price: 0.15
+                },
+                amount: 1
             },
             {
-                id: 3,
-                type: 'chocolate',
-                name: 'סוכריות שוקולד',
-                icon: '🍫',
-                price: 0.15
+                ingredient: {
+                    id: 3,
+                    type: 'chocolate',
+                    name: 'סוכריות שוקולד',
+                    icon: '🍫',
+                    price: 0.15
+                },
+                amount: 1
             }
         ]
     }
-
     products: Product[] = [this.product1, this.product2, this.product1, this.product2, this.product1, this.product2];
+
+    constructor(api: JelliciousApiService) {
+        // api.fetchProducts$().subscribe(response => {
+        //     this.products = response;
+        // });
+    }
+
 }

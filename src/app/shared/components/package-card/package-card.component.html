@@ -10,9 +10,9 @@
     </mat-card-content>
     <mat-card-footer>
         <mat-chip-set aria-label="רשימת רכיבים">
-            <mat-chip *ngFor="let ingredient of package.ingredients">
-                <span class="chip-text">{{ ingredient.name }}</span>
-                <span aria-hidden="true">{{ ingredient.icon }}</span>
+            <mat-chip *ngFor="let item of package.ingredients">
+                <span class="chip-text">{{ item.ingredient.name }}</span>
+                <span aria-hidden="true">{{ item.ingredient.icon }}</span>
             </mat-chip>
         </mat-chip-set>
     </mat-card-footer>

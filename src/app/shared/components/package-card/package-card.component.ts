@@ -3,8 +3,8 @@ import {MatFabButton} from '@angular/material/button';
 import {MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardHeader, MatCardImage, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import {MatChip, MatChipSet} from '@angular/material/chips';
 import {ShoppingService} from '../../services/shopping.service';
-import {Product} from '../../model/ProductTypes';
 import {NgForOf, NgIf} from '@angular/common';
+import {Product} from '../../model/Product';
 
 
 @Component({

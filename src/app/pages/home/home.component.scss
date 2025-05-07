@@ -1,17 +1,12 @@
 :host {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  height: 100%;
-  margin: 1rem;
-  gap: 1rem;
+    margin: 3rem 1rem 1rem 1rem;
 
-  main {
-    display: grid;
-    overflow-x: hidden;
-    overflow-y: auto;
-    min-width: 400px;
-    gap: 4rem 6rem;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 500px));
-    justify-content: center;
-  }
+    main {
+        display: grid;
+        overflow-x: hidden;
+        overflow-y: auto;
+        gap: 4rem 6rem;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 500px));
+        justify-content: center;
+    }
 }

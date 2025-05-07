@@ -1,15 +1,19 @@
 import {Component} from '@angular/core';
-import {MatDrawer, MatDrawerContainer} from '@angular/material/sidenav';
+import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from '@angular/material/dialog';
+import {MatButton} from '@angular/material/button';
 
 
 @Component({
-  selector: 'jls-cart-dialog',
+    selector: 'jls-cart-dialog',
     imports: [
-        MatDrawerContainer,
-        MatDrawer
+        MatDialogContent,
+        MatDialogTitle,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose
     ],
-  templateUrl: './cart-dialog.component.html',
-  styleUrl: './cart-dialog.component.scss'
+    templateUrl: './cart-dialog.component.html',
+    styleUrl: './cart-dialog.component.scss'
 })
 export class CartDialogComponent {
 
