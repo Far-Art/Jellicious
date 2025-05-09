@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {PackageCardComponent} from '../../shared/components/package-card/package-card.component';
+import {ProductCardComponent} from '../../shared/components/product-card/product-card.component';
 import {Product} from '../../shared/model/Product';
 import {JelliciousApiService} from '../../shared/services/jellicious-api.service';
 
@@ -7,7 +7,7 @@ import {JelliciousApiService} from '../../shared/services/jellicious-api.service
 @Component({
     selector: 'jls-home',
     imports: [
-        PackageCardComponent
+        ProductCardComponent
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
@@ -100,7 +100,136 @@ export class HomeComponent {
             }
         ]
     }
-    products: Product[] = [this.product1, this.product2, this.product1, this.product2, this.product1, this.product2];
+    product3: Product = {
+        id: 3,
+        type: 'box',
+        name: 'מארז מתוק בקטנה',
+        subtitle: 'מארז גומי 6 תאים',
+        price: 180,
+        newPrice: 150,
+        weight: 250,
+        description: 'מארז סוכריות גומי מתוק לכל האהובים שלכם',
+        imageUrl: '/assets/boxes/box2.jpg',
+        ingredients: [
+            {
+                ingredient: {
+                    id: 1,
+                    type: 'gummy',
+                    name: 'סוכריות גומי',
+                    icon: '🍬',
+                    price: 0.15
+                },
+                amount: 1
+            },
+            {
+                ingredient: {
+                    id: 2,
+                    type: 'marshmello',
+                    name: 'מרשמלו',
+                    icon: '🍡',
+                    price: 0.15
+                },
+                amount: 1
+            },
+            {
+                ingredient: {
+                    id: 3,
+                    type: 'chocolate',
+                    name: 'סוכריות שוקולד',
+                    icon: '🍫',
+                    price: 0.15
+                },
+                amount: 1
+            }
+        ]
+    }
+    product4: Product = {
+        id: 4,
+        type: 'box',
+        name: 'מארז מתוק בקטנה',
+        subtitle: 'מארז גומי 6 תאים',
+        price: 180,
+        newPrice: 150,
+        weight: 250,
+        description: 'מארז סוכריות גומי מתוק לכל האהובים שלכם',
+        imageUrl: '/assets/boxes/box2.jpg',
+        ingredients: [
+            {
+                ingredient: {
+                    id: 1,
+                    type: 'gummy',
+                    name: 'סוכריות גומי',
+                    icon: '🍬',
+                    price: 0.15
+                },
+                amount: 1
+            },
+            {
+                ingredient: {
+                    id: 2,
+                    type: 'marshmello',
+                    name: 'מרשמלו',
+                    icon: '🍡',
+                    price: 0.15
+                },
+                amount: 1
+            },
+            {
+                ingredient: {
+                    id: 3,
+                    type: 'chocolate',
+                    name: 'סוכריות שוקולד',
+                    icon: '🍫',
+                    price: 0.15
+                },
+                amount: 1
+            }
+        ]
+    }
+    product5: Product = {
+        id: 5,
+        type: 'box',
+        name: 'מארז מתוק בקטנה',
+        subtitle: 'מארז גומי 6 תאים',
+        price: 180,
+        newPrice: 150,
+        weight: 250,
+        description: 'מארז סוכריות גומי מתוק לכל האהובים שלכם',
+        imageUrl: '/assets/boxes/box2.jpg',
+        ingredients: [
+            {
+                ingredient: {
+                    id: 1,
+                    type: 'gummy',
+                    name: 'סוכריות גומי',
+                    icon: '🍬',
+                    price: 0.15
+                },
+                amount: 1
+            },
+            {
+                ingredient: {
+                    id: 2,
+                    type: 'marshmello',
+                    name: 'מרשמלו',
+                    icon: '🍡',
+                    price: 0.15
+                },
+                amount: 1
+            },
+            {
+                ingredient: {
+                    id: 3,
+                    type: 'chocolate',
+                    name: 'סוכריות שוקולד',
+                    icon: '🍫',
+                    price: 0.15
+                },
+                amount: 1
+            }
+        ]
+    }
+    products: Product[] = [this.product1, this.product2, this.product3, this.product4, this.product5];
 
     constructor(api: JelliciousApiService) {
         // api.fetchProducts$().subscribe(response => {
