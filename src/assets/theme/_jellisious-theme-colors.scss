@@ -200,6 +200,10 @@ html {
         'opsz' 24
     }
 
+    .mat-mdc-dialog-surface:has(jls-cart-dialog) {
+        --mdc-dialog-container-shape: 0;
+    }
+
     .mdc-snackbar__label {
         --mdc-snackbar-supporting-text-size: 1.1rem;
         user-select: none;
@@ -216,9 +220,6 @@ html {
     }
 
     @media (forced-colors: active) {
-        .logo {
-            filter: grayscale(1) brightness(4);
-        }
 
         nav {
             border-bottom: 1px solid white;

@@ -4,6 +4,7 @@ import {MatButton} from '@angular/material/button';
 import {ShoppingService} from '../../services/shopping.service';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MenuButtonComponent} from './menu-button/menu-button.component';
+import {APP_CATEGORIES} from '../../../app.constants';
 
 
 export type NavItem = {
@@ -33,22 +34,29 @@ export class NavBarComponent {
 
     categoriesItems: NavItem[] = [
         {
-            label: 'מארזים מתוקים',
-            icon: 'featured_seasonal_and_gifts',
-            click: () => {}
-        },
-        {
-            label: 'זרים מתוקים',
+            label: APP_CATEGORIES.bouquets,
             icon: 'local_florist',
-            click: () => {}
+            click: () => this.scrollIntoView('bouquets-section')
         },
         {
-            label: 'מתוקים משלימים',
+            label: APP_CATEGORIES.boxes,
+            icon: 'featured_seasonal_and_gifts',
+            click: () => this.scrollIntoView('boxes-section')
+        },
+        {
+            label: APP_CATEGORIES.complimentary,
             icon: 'cookie',
             click: () => {}
         }
     ];
 
     constructor(protected shoppingService: ShoppingService) {}
+
+    private scrollIntoView(id: string) {
+        document.getElementById(id)?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }
 
 }

@@ -19,7 +19,7 @@ import {MatAnchor} from '@angular/material/button';
         `
             :host {
                 display: grid;
-                grid-template-rows: 1fr auto 1fr;
+                grid-template-rows: auto 1fr auto;
                 min-height: 100svh;
                 background-color: var(--background-surface);
 

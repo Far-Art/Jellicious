@@ -1,12 +1,6 @@
-:host {
-    margin: 3rem 1rem 1rem 1rem;
-
-    main {
-        display: grid;
-        overflow-x: hidden;
-        overflow-y: auto;
-        gap: 4rem 6rem;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 500px));
-        justify-content: center;
-    }
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-inline: 2rem;
 }

@@ -9,44 +9,42 @@
         }
     }
 
-    .in-cart-wrapper {
-        display: flex;
-        gap: 1rem;
-        justify-content: space-between;
+    button {
+        --timing: 150ms;
+        transition: width var(--timing) ease-in-out, border-radius var(--timing) ease-in-out;
 
-        button {
-            border-radius: 2rem;
+        &.amount-button {
+            overflow: hidden;
 
-            &:nth-child(2) {
-                flex-grow: 1;
+            &.increase {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            &.decrease {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            &:not(.visible) {
+                width: 0;
+            }
+        }
+
+        &.add-to-cart-button {
+            font-size: 1.2em;
+            flex-grow: 1;
+            z-index: 1;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+
+            &.shrunk {
+                margin-inline: 3px;
+                border-radius: 0;
+                width: 0;
                 cursor: default;
             }
-
-            span.material-symbols-outlined {
-                font-size: 2rem;
-            }
-
-            span:not(material-symbols-outlined) {
-                font-size: 1.2rem;
-            }
-        }
-    }
-
-    > .product-card {
-        justify-content: space-between;
-        width: 100%;
-
-        img {
-            user-select: none;
-        }
-
-        .mat-mdc-card-title {
-            --mat-card-title-text-weight: 800;
-        }
-
-        .add-to-cart-button {
-            width: 100%;
-            font-size: 1.2em;
 
             span {
                 margin-inline: 0.15em;
@@ -63,6 +61,34 @@
                     color: var(--mat-sys-tertiary-fixed-dim);
                 }
             }
+        }
+
+
+        &.add-to-cart-button {
+            //cursor: default;
+            //margin-inline: 3px;
+            //border-radius: 0;
+        }
+
+        span.material-symbols-outlined {
+            font-size: 2rem;
+        }
+
+        span:not(material-symbols-outlined) {
+            font-size: 1.2rem;
+        }
+    }
+
+    > .product-card {
+        justify-content: space-between;
+        width: 100%;
+
+        img {
+            user-select: none;
+        }
+
+        .mat-mdc-card-title {
+            --mat-card-title-text-weight: 800;
         }
 
         .chip-text {

@@ -1,5 +1,13 @@
 <main id="main-content">
-    @for (product of products; track product.id) {
-        <jls-product-card [product]="product" />
-    }
+    <jls-category-section id="bouquets-section" [title]="APP_CATEGORIES.bouquets">
+        @for (product of bouquets; track product.id) {
+            <jls-product-card [product]="product" />
+        }
+    </jls-category-section>
+
+    <jls-category-section id="boxes-section" [title]="APP_CATEGORIES.boxes">
+        @for (product of boxes; track product.id) {
+            <jls-product-card [product]="product" />
+        }
+    </jls-category-section>
 </main>

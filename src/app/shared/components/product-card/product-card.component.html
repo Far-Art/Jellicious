@@ -1,8 +1,10 @@
-<mat-card class="product-card" appearance="outlined">
-    <img [draggable]="false" aria-hidden="true" mat-card-image [src]="product.imageUrl" alt="תצומה של {{product.name}}">
+<!--TODO continue with accessibility-->
+<mat-card class="product-card" appearance="outlined" role="group" [attr.aria-labelledby]="'card-title' + product.id">
+    <img [draggable]="false" mat-card-image [src]="product.imageUrl" alt="תמונה של {{product.name}}">
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{ product.name }}</mat-card-title>
+        <mat-card-title>
+            <h4 [id]="'card-title' + product.id">{{ product.name }}</h4>
+        </mat-card-title>
         <mat-card-subtitle><span>{{ product.subtitle + ', ' }}</span> <span>{{ product.weight + ' גרם' }}</span></mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -17,33 +19,47 @@
         </mat-chip-set>
     </mat-card-footer>
     <mat-card-actions>
-        <ng-container *ngIf="isNotInCartTemplate">
-            <ng-container *ngTemplateOutlet="not_in_cart_template" />
-        </ng-container>
-        <ng-container *ngIf="isInCartTemplate">
-            <ng-container *ngTemplateOutlet="in_cart_template" />
-        </ng-container>
+        <ng-container *ngTemplateOutlet="action_buttons_template" />
     </mat-card-actions>
 </mat-card>
 
-<ng-template #not_in_cart_template>
-    <button class="add-to-cart-button" [attr.aria-label]="buttonLabel" mat-fab extended (click)="addToCart()">
-        <span>הוסף לסל</span>
+<ng-template #action_buttons_template>
+    <button [attr.aria-hidden]="!isInCartTemplate"
+            [disabled]="!isInCartTemplate"
+            class="amount-button increase"
+            [class.visible]="isInCartTemplate"
+            mat-fab
+            (click)="increaseAmount()"
+            aria-label="הוסף יותר לסל">
+        <span aria-hidden="true" class="material-symbols-outlined">add_circle</span>
+    </button>
+
+    <button [disableRipple]="isInCartTemplate"
+            class="add-to-cart-button"
+            [class.shrunk]="isInCartTemplate"
+            [attr.aria-label]="buttonLabel"
+            mat-fab
+            extended
+            (click)="isInCartTemplate ? noop() : addToCart()">
+        <ng-container *ngTemplateOutlet="isInCartTemplate ? in_cart_amount : add_to_cart"></ng-container>
+    </button>
+
+    <button [attr.aria-hidden]="!isInCartTemplate"
+            [disabled]="!isInCartTemplate"
+            class="amount-button decrease"
+            [class.visible]="isInCartTemplate"
+            mat-fab
+            (click)="decreaseAmount()"
+            aria-label="החסר פחות מהסל">
+        <span aria-hidden="true" class="material-symbols-outlined">do_not_disturb_on</span>
+    </button>
+
+    <ng-template #add_to_cart>
+        <span aria-hidden="true">הוסף לסל</span>
         <span aria-hidden="true" [class.line-through]="product.newPrice">₪{{ product.price }}</span>
         <span aria-hidden="true" *ngIf="product.newPrice">₪{{ product.newPrice }}</span>
-    </button>
-</ng-template>
-
-<ng-template #in_cart_template>
-    <div [@minWidthExpand] (@minWidthExpand.done)="removeFromCart()" class="in-cart-wrapper">
-        <button mat-fab (click)="increaseAmount()" aria-label="הוסף יותר לסל">
-            <span aria-hidden="true" class="material-symbols-outlined">add_circle</span>
-        </button>
-        <button [@buttonRadius]="buttonRadiusState" [attr.aria-label]="amount + ' פריטים מסוג זה בסל'" mat-fab>
-            <span aria-hidden="true">{{ amount }}</span>
-        </button>
-        <button mat-fab (click)="decreaseAmount()" aria-label="החסר פחות מהסל">
-            <span aria-hidden="true" class="material-symbols-outlined">do_not_disturb_on</span>
-        </button>
-    </div>
+    </ng-template>
+    <ng-template #in_cart_amount>
+        <span aria-hidden="true">{{ amount }}</span>
+    </ng-template>
 </ng-template>

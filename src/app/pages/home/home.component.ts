@@ -2,12 +2,15 @@ import {Component} from '@angular/core';
 import {ProductCardComponent} from '../../shared/components/product-card/product-card.component';
 import {Product} from '../../shared/model/Product';
 import {JelliciousApiService} from '../../shared/services/jellicious-api.service';
+import {CategorySectionComponent} from '../../shared/components/category-section/category-section.component';
+import {APP_CATEGORIES} from '../../app.constants';
 
 
 @Component({
     selector: 'jls-home',
     imports: [
-        ProductCardComponent
+        ProductCardComponent,
+        CategorySectionComponent
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
@@ -229,7 +232,8 @@ export class HomeComponent {
             }
         ]
     }
-    products: Product[] = [this.product1, this.product2, this.product3, this.product4, this.product5];
+    bouquets: Product[] = [this.product3, this.product4, this.product5];
+    boxes: Product[] = [this.product1, this.product2];
 
     constructor(api: JelliciousApiService) {
         // api.fetchProducts$().subscribe(response => {
@@ -237,4 +241,5 @@ export class HomeComponent {
         // });
     }
 
+    protected readonly APP_CATEGORIES = APP_CATEGORIES;
 }
