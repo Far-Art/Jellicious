@@ -1,80 +1,57 @@
 import {Injectable} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {BehaviorSubject, filter, map, Observable, of, switchMap, tap} from 'rxjs';
+import {BehaviorSubject, map, Observable, of} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {CartDialogComponent} from '../components/cart-dialog/cart-dialog.component';
-import {Product} from '../model/Product';
 import {SelectionModel} from '@angular/cdk/collections';
 
-
-export type CartProductData = { amount: number, product: Product };
 
 @Injectable({
     providedIn: 'root'
 })
 export class ShoppingService {
 
-    private productDataSubject = new BehaviorSubject<void>(undefined);
+    private amountsUpdatedSubject = new BehaviorSubject<void>(undefined);
 
-    private _cartMap: Map<number, BehaviorSubject<CartProductData>> = new Map();
+    /* productId vs amount */
+    private _cartAmountMap: Map<number, number> = new Map();
 
-    private _cartUpdated = new BehaviorSubject<void>(undefined);
-
-    private _cartSelection = new SelectionModel<CartProductData>(
+    private _cartSelection = new SelectionModel<number>(
         true,
-        [],
-        true,
-        (p1, p2) => p1.product.id === p2.product.id);
+        []
+    );
 
     constructor(private snackBar: MatSnackBar, private dialog: MatDialog) { }
 
-    getSelection() {
-        // return  this._cartSelection.changed.pipe(tap(() => this._cartUpdated.next()));
-        return of(this._cartSelection.selected).pipe(switchMap(() => this._cartSelection.changed));
+    cartSelection$() {
+        return of(this._cartSelection.selected);
     }
 
-    get cartSubjects$(): Observable<Observable<CartProductData>> {
-        return this._cartUpdated.pipe(switchMap(() => [...this._cartMap.values()].map(o => o.asObservable())));
+    productAmount(productId: number): number | undefined {
+        return this._cartAmountMap.get(productId);
     }
 
-    productData$(product: Product): Observable<CartProductData> {
-        return this.productDataSubject.pipe(
-            map(() => this._cartMap.get(product.id)),
-            filter(data => data != null),
-            switchMap(data => data.asObservable())
+    productAmount$(productId: number): Observable<number | undefined> {
+        return this.amountsUpdatedSubject.pipe(
+            map(() => this.productAmount(productId))
         );
     }
 
-    increaseProduct(product: Product): void {
-        const subject = this._cartMap.get(product.id) ?? new BehaviorSubject({
-            amount: 0,
-            product
-        });
-
-        subject.next({
-            amount: subject.value.amount + 1,
-            product: subject.value.product
-        });
-
-        this._cartMap.set(product.id, subject);
-        this._cartSelection.select(subject.value);
-        console.log(this._cartSelection.selected)
-        this.productDataSubject.next();
+    increaseProductAmount(productId: number): void {
+        this._cartAmountMap.set(productId, (this._cartAmountMap.get(productId) ?? 0) + 1);
+        this._cartSelection.select(productId);
+        this.amountsUpdatedSubject.next();
     }
 
-    decreaseProduct(product: Product): void {
-        const subj = this._cartMap.get(product.id);
-        if (subj && subj.value.amount > 0) {
-            subj.next({
-                amount: subj.value.amount - 1,
-                product: product
-            });
-
-            if (subj.value.amount === 0) {
-                this._cartMap.delete(product.id);
-            }
-            this.productDataSubject.next();
+    decreaseProductAmount(productId: number): void {
+        const amount: number = (this._cartAmountMap.get(productId) ?? 1) - 1;
+        if (amount === 0) {
+            this._cartAmountMap.delete(productId);
+            this._cartSelection.deselect(productId);
+        } else {
+            this._cartAmountMap.set(productId, amount);
         }
+        this.amountsUpdatedSubject.next();
     }
 
     openCartDialog() {

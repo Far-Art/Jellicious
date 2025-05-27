@@ -1,7 +1,9 @@
 import {ProductType} from './ProductType';
+import {APP_CATEGORIES} from '../../app.constants';
 
 export type ProductDTO = {
     id: number;
+    category: keyof typeof APP_CATEGORIES;
     name: string;
     subtitle: string;
     description: string;

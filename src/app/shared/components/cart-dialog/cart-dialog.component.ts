@@ -1,10 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from '@angular/material/dialog';
 import {MatButton} from '@angular/material/button';
-import {CartProductData, ShoppingService} from '../../services/shopping.service';
-import {AsyncPipe, NgForOf} from '@angular/common';
-import {BehaviorSubject} from 'rxjs';
+import {ShoppingService} from '../../services/shopping.service';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {ProductsService} from '../../services/products.service';
+import {Product} from '../../model/Product';
+import {MatCheckbox} from '@angular/material/checkbox';
 
+
+export type CartProductData = { amount: number, product: Product };
 
 @Component({
     selector: 'jls-cart-dialog',
@@ -14,25 +18,34 @@ import {BehaviorSubject} from 'rxjs';
         MatDialogActions,
         MatButton,
         MatDialogClose,
-        NgForOf,
-        AsyncPipe
+        MatTableModule,
+        MatCheckbox
     ],
     templateUrl: './cart-dialog.component.html',
     styleUrl: './cart-dialog.component.scss'
 })
 export class CartDialogComponent implements OnInit {
 
-    constructor(protected service: ShoppingService) {}
+    protected dataSource = new MatTableDataSource<CartProductData>([]);
+    protected displayedColumns = ['select', 'name', 'amount', 'price'];
 
-    products$: BehaviorSubject<CartProductData>[] = [];
+    constructor(
+        private shoppingService: ShoppingService,
+        private productsService: ProductsService
+    ) {}
 
     ngOnInit(): void {
-        this.service.getSelection().subscribe(data => {
-            console.log(data)
+        this.shoppingService.cartSelection$().subscribe(selectedIds => {
+            this.updateDataSource(selectedIds);
         });
-        // this.service.cartSubjects$.subscribe(v => {
-        //     console.log(v)
-        // })
+    }
+
+    private updateDataSource(ids: number[]) {
+        this.dataSource.data = ids.map(id => ({
+            amount: this.shoppingService.productAmount(id) ?? 0,
+            product: this.productsService.getById(id)[0]
+        }));
+        console.log(this.dataSource.data);
     }
 
 }

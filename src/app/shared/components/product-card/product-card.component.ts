@@ -41,23 +41,24 @@ export class ProductCardComponent implements OnInit {
 
     ngOnInit(): void {
         this.updateButtonLabel();
-        this.shoppingService.productData$(this.product).subscribe(data => {
-            this.amount = data.amount;
-            this.isInCartTemplate = this.amount > 0;
-            this.updateButtonLabel();
-        });
+        this.shoppingService.productAmount$(this.product.id)
+            .subscribe(amount => {
+                this.amount = amount ?? 0;
+                this.isInCartTemplate = this.amount > 0;
+                this.updateButtonLabel();
+            });
     }
 
     addToCart(): void {
-        this.shoppingService.increaseProduct(this.product);
+        this.shoppingService.increaseProductAmount(this.product.id);
     }
 
     increaseAmount(): void {
-        this.shoppingService.increaseProduct(this.product);
+        this.shoppingService.increaseProductAmount(this.product.id);
     }
 
     decreaseAmount(): void {
-        this.shoppingService.decreaseProduct(this.product);
+        this.shoppingService.decreaseProductAmount(this.product.id);
     }
 
     noop(): void {}

@@ -10,4 +10,10 @@
             <jls-product-card [product]="product" />
         }
     </jls-category-section>
+
+    <jls-category-section id="complementary-section" [title]="APP_CATEGORIES.complementary">
+        @for (product of complementary; track product.id) {
+            <jls-product-card [product]="product" />
+        }
+    </jls-category-section>
 </main>

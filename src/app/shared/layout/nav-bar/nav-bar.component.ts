@@ -44,9 +44,9 @@ export class NavBarComponent {
             click: () => this.scrollIntoView('boxes-section')
         },
         {
-            label: APP_CATEGORIES.complimentary,
+            label: APP_CATEGORIES.complementary,
             icon: 'cookie',
-            click: () => {}
+            click: () => this.scrollIntoView('complementary-section')
         }
     ];
 
