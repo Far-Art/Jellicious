@@ -5,7 +5,6 @@ import {ShoppingService} from '../../services/shopping.service';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {ProductsService} from '../../services/products.service';
 import {Product} from '../../model/Product';
-import {MatCheckbox} from '@angular/material/checkbox';
 
 
 export type CartProductData = { amount: number, product: Product };
@@ -18,8 +17,7 @@ export type CartProductData = { amount: number, product: Product };
         MatDialogActions,
         MatButton,
         MatDialogClose,
-        MatTableModule,
-        MatCheckbox
+        MatTableModule
     ],
     templateUrl: './cart-dialog.component.html',
     styleUrl: './cart-dialog.component.scss'
@@ -45,7 +43,6 @@ export class CartDialogComponent implements OnInit {
             amount: this.shoppingService.productAmount(id) ?? 0,
             product: this.productsService.getById(id)[0]
         }));
-        console.log(this.dataSource.data);
     }
 
 }

@@ -1,0 +1,54 @@
+[
+    {
+        "id": 1,
+        "type": "box",
+		"category": "boxes",
+        "name": "מארז מתוק",
+        "subtitle": "מארז גומי 24 תאים",
+        "price": 250,
+        "newPrice": 200,
+        "weight": 1000,
+        "description": "מארז סוכריות גומי מתוק לכל האהובים שלכם",
+        "imageUrl": "/assets/photos/boxes/box1.jpg",
+        "ingredients": [
+            {
+                "ingredientId": 1,
+                "amount": 1
+            },
+            {
+                "ingredientId": 2,
+                "amount": 1
+            },
+            {
+                "ingredientId": 3,
+                "amount": 1
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "type": "box",
+		"category": "boxes",
+        "name": "מארז מתוק בקטנה",
+        "subtitle": "מארז גומי 6 תאים",
+        "price": 180,
+        "newPrice": 150,
+        "weight": 250,
+        "description": "מארז סוכריות גומי מתוק לכל האהובים שלכם",
+        "imageUrl": "/assets/photos/boxes/box2.jpg",
+        "ingredients": [
+            {
+                "ingredientId": 1,
+                "amount": 1
+            },
+            {
+                "ingredientId": 2,
+                "amount": 1
+            },
+            {
+                "ingredientId": 3,
+                "amount": 1
+            }
+        ]
+    }
+]

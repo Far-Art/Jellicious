@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"type": "gummy",
+		"name": "סוכריות גומי",
+		"icon": "🍬",
+		"price": 0.15
+	},
+	{
+		"id": 2,
+		"type": "marshmello",
+		"name": "מרשמלו",
+		"icon": "🍡",
+		"price": 0.15
+	},
+	{
+		"id": 3,
+		"type": "chocolate",
+		"name": "סוכריות שוקולד",
+		"icon": "🍫",
+		"price": 0.15
+	}
+]
