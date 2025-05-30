@@ -1,0 +1,50 @@
+<section>
+    <h2>מוצרים</h2>
+    <mat-table [dataSource]="products">
+        <ng-container matColumnDef="img">
+            <mat-header-cell *matHeaderCellDef>תמונה</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <img [ngSrc]="element.imageUrl" alt="תמונה של מוצר" height="100" width="100">
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>שם</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef>הסבר</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.description }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+            <mat-header-cell *matHeaderCellDef>סוג</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.category }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actionBtns">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <div class="action-buttons">
+                    <button mat-mini-fab (click)="editProduct(element)">
+                        <mat-icon class="material-symbols-outlined">ink_pen</mat-icon>
+                    </button>
+                    <button mat-mini-fab (click)="deleteProduct(element)">
+                        <mat-icon class="material-symbols-outlined">delete</mat-icon>
+                    </button>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="productsColumns"></mat-header-row>
+        <mat-row *matRowDef="let _; columns: productsColumns;"></mat-row>
+    </mat-table>
+    <button (click)="editProduct(null)" mat-button>+הוסף מוצר</button>
+</section>
+<section>
+    <button mat-fab extended (click)="updateData()">
+        שמור שינויים לשרת
+        <mat-icon class="material-symbols-outlined">backup</mat-icon>
+    </button>
+</section>

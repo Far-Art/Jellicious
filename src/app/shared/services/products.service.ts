@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, map, Observable, tap} from 'rxjs';
+import {BehaviorSubject, Observable, tap} from 'rxjs';
 import {Product} from '../model/Product';
 import {APP_CATEGORIES} from '../../app.constants';
 import {JelliciousApiService} from './jellicious-api.service';
@@ -22,34 +22,64 @@ export class ProductsService {
         complementary: []
     });
 
+    constructor(private api: JelliciousApiService) {
+        api.products$.pipe(
+            tap(response => {
+                this.productsMap = new Map(response.map(p => [p.id, p]));
+            })
+        ).subscribe(response => {
+            this.productsByCategorySubject.next(this.mapByCategory(response));
+        });
+    }
+
     get products$(): Observable<ProductsByCategory> {
         return this.productsByCategorySubject.asObservable();
     }
 
-    getById(...ids: number[]): Product[] {
+    getProductById(...ids: number[]): Product[] {
         return ids.map(id => this.productsMap.get(id)).filter(product => product != null);
     }
 
-    constructor(api: JelliciousApiService) {
-        api.fetchProducts$().pipe(
-            tap(response => {
-                this.productsMap = new Map(response.map(p => [p.id, p]));
-            }),
-            map(response => {
-                return response.reduce((
-                    acc: ProductsByCategory,
-                    item: Product
-                ) => {
-                    acc[item.category].push(item);
-                    return acc;
-                }, {
-                    bouquets: [],
-                    boxes: [],
-                    complementary: []
-                });
-            })).subscribe(result => {
-            this.productsByCategorySubject.next(result);
-        })
+    getProductNextId() {
+        return Math.max(...this.productsMap.keys()) + 1;
+    }
+
+    updateProductMap(product: Product) {
+        this.productsMap.set(product.id, product);
+        this.updateSubject();
+    }
+
+    deleteProductById(id: number) {
+        this.productsMap.delete(id);
+        this.updateSubject();
+    }
+
+    updateServerData() {
+        this.api.updateServerData([...this.productsMap.values()]);
+    }
+
+    private updateSubject() {
+        this.productsByCategorySubject.next(this.mapByCategory([...this.productsMap.values()]));
+    }
+
+    private mapByCategory(products: Product[]): ProductsByCategory {
+        const initial: ProductsByCategory = {
+            bouquets: [],
+            boxes: [],
+            complementary: []
+        };
+
+        if (products?.length > 0) {
+            return products.reduce((
+                acc: ProductsByCategory,
+                item: Product
+            ) => {
+                acc[item.category].push(item);
+                return acc;
+            }, initial);
+        }
+
+        return initial;
     }
 
 }

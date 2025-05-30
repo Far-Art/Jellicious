@@ -41,7 +41,7 @@ export class CartDialogComponent implements OnInit {
     private updateDataSource(ids: number[]) {
         this.dataSource.data = ids.map(id => ({
             amount: this.shoppingService.productAmount(id) ?? 0,
-            product: this.productsService.getById(id)[0]
+            product: this.productsService.getProductById(id)[0]
         }));
     }
 

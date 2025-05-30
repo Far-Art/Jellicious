@@ -1,1 +1,3 @@
-export type IngredientType = 'candy' | 'gummy' | 'chocolate' | 'marshmello' | 'alcohol';
+import {APP_INGREDIENT_TYPES} from '../../app.constants';
+
+export type IngredientType = keyof typeof APP_INGREDIENT_TYPES;

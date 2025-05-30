@@ -1,0 +1,16 @@
+.action-buttons {
+    display: flex;
+    gap: 3rem;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-block: 2rem;
+
+    &:last-child {
+        align-items: center;
+    }
+}

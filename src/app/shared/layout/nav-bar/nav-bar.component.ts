@@ -5,6 +5,7 @@ import {ShoppingService} from '../../services/shopping.service';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MenuButtonComponent} from './menu-button/menu-button.component';
 import {APP_CATEGORIES} from '../../../app.constants';
+import {RouterLink} from '@angular/router';
 
 
 export type NavItem = {
@@ -19,7 +20,8 @@ export type NavItem = {
         NgOptimizedImage,
         MatToolbarModule,
         MenuButtonComponent,
-        NgForOf
+        NgForOf,
+        RouterLink
     ],
     templateUrl: './nav-bar.component.html',
     styleUrl: './nav-bar.component.scss'

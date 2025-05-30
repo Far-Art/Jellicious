@@ -6,6 +6,8 @@
         <div>
             <jls-menu-button *ngFor="let item of categoriesItems" [navItem]="item" />
         </div>
-        <img draggable="false" class="logo" ngSrc="/assets/logo.svg" alt="Jellicious logo" height="70" width="210">
+        <a routerLink="/">
+            <img priority draggable="false" class="logo" ngSrc="/assets/logo.svg" alt="Jellicious logo" height="70" width="210">
+        </a>
     </mat-toolbar>
 </nav>

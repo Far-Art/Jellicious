@@ -1,0 +1,51 @@
+<mat-dialog-content>
+    <form [formGroup]="form">
+        <mat-form-field>
+            <mat-label>שם</mat-label>
+            <input formControlName="name" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>תת כותרת</mat-label>
+            <input formControlName="subtitle" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>תיאור</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>קטגוריה</mat-label>
+            <mat-select formControlName="category">
+                @for (cat of categories; track cat[0]) {
+                    <mat-option [value]="cat[0]">{{ cat[1] }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>מחיר</mat-label>
+            <input type="number" formControlName="price" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>מחיר חדש</mat-label>
+            <input type="number" formControlName="newPrice" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>משקל</mat-label>
+            <input type="number" formControlName="weight" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>תמונה</mat-label>
+            <input formControlName="imageUrl" matInput>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>ביטול</button>
+    <button [disabled]="form.invalid" mat-button [mat-dialog-close]="form.value">שמור</button>
+</mat-dialog-actions>
