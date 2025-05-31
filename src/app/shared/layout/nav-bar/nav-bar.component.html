@@ -6,8 +6,8 @@
         <div>
             <jls-menu-button *ngFor="let item of categoriesItems" [navItem]="item" />
         </div>
-        <a routerLink="/">
+        <button class="logo-button" (click)="goHome()" aria-label="כפתור מעבר לאמוד ראשי">
             <img priority draggable="false" class="logo" ngSrc="/assets/logo.svg" alt="Jellicious logo" height="70" width="210">
-        </a>
+        </button>
     </mat-toolbar>
 </nav>

@@ -23,6 +23,16 @@
             <mat-cell *matCellDef="let element">{{ element.category }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef>מחיר</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.price }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="newPrice">
+            <mat-header-cell *matHeaderCellDef>מחיר חדש</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.newPrice }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="actionBtns">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let element">

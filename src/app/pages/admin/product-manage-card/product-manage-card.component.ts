@@ -32,12 +32,10 @@ export class ProductManageCardComponent {
     form: FormGroup<{
         id: FormControl<number>,
         name: FormControl<string>,
-        subtitle: FormControl<string>,
         description: FormControl<string>,
         category: FormControl<string>,
         price: FormControl<number | undefined>,
         newPrice: FormControl<number | undefined>,
-        weight: FormControl<number | undefined>,
         imageUrl: FormControl<string>
     }>;
 
@@ -47,12 +45,10 @@ export class ProductManageCardComponent {
         this.form = new FormGroup({
             id: new FormControl(product?.id ?? service.getProductNextId(), Validators.required),
             name: new FormControl(product?.name ?? '', Validators.required),
-            subtitle: new FormControl(product?.subtitle ?? '', Validators.required),
             description: new FormControl(product?.description ?? '', Validators.required),
             category: new FormControl(product?.category ?? '', Validators.required),
             price: new FormControl(product?.price, Validators.required),
             newPrice: new FormControl(product?.newPrice),
-            weight: new FormControl(product?.weight, Validators.required),
             imageUrl: new FormControl(product?.imageUrl, Validators.required)
         }) as FormGroup;
     }

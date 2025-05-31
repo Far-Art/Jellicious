@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
 import {NgForOf, NgOptimizedImage} from '@angular/common';
-import {MatButton} from '@angular/material/button';
 import {ShoppingService} from '../../services/shopping.service';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MenuButtonComponent} from './menu-button/menu-button.component';
 import {APP_CATEGORIES} from '../../../app.constants';
-import {RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 
 
 export type NavItem = {
@@ -20,8 +19,7 @@ export type NavItem = {
         NgOptimizedImage,
         MatToolbarModule,
         MenuButtonComponent,
-        NgForOf,
-        RouterLink
+        NgForOf
     ],
     templateUrl: './nav-bar.component.html',
     styleUrl: './nav-bar.component.scss'
@@ -52,12 +50,26 @@ export class NavBarComponent {
         }
     ];
 
-    constructor(protected shoppingService: ShoppingService) {}
+    constructor(private shoppingService: ShoppingService, private router: Router) {}
+
+    goHome() {
+        this.router.navigate(['/']).then(() => {
+            document.documentElement.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
     private scrollIntoView(id: string) {
-        document.getElementById(id)?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
+        const body = document.documentElement;
+        const el = document.getElementById(id)!;
+        const top = el.getBoundingClientRect().top;
+        const scrollPosition = top - body.scrollTop + body.scrollTop - 100;
+
+        body.scrollTo({
+            top: scrollPosition,
+            behavior: 'smooth'
         });
     }
 

@@ -5,6 +5,7 @@ import {ShoppingService} from '../../services/shopping.service';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {ProductsService} from '../../services/products.service';
 import {Product} from '../../model/Product';
+import {NgOptimizedImage} from '@angular/common';
 
 
 export type CartProductData = { amount: number, product: Product };
@@ -17,7 +18,8 @@ export type CartProductData = { amount: number, product: Product };
         MatDialogActions,
         MatButton,
         MatDialogClose,
-        MatTableModule
+        MatTableModule,
+        NgOptimizedImage
     ],
     templateUrl: './cart-dialog.component.html',
     styleUrl: './cart-dialog.component.scss'
@@ -25,7 +27,7 @@ export type CartProductData = { amount: number, product: Product };
 export class CartDialogComponent implements OnInit {
 
     protected dataSource = new MatTableDataSource<CartProductData>([]);
-    protected displayedColumns = ['select', 'name', 'amount', 'price'];
+    protected displayedColumns = ['select', 'img', 'name', 'amount', 'price'];
 
     constructor(
         private shoppingService: ShoppingService,

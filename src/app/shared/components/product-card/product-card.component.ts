@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ShoppingService} from '../../services/shopping.service';
 import {Product} from '../../model/Product';
-import {MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardHeader, MatCardImage, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
-import {NgIf, NgTemplateOutlet} from '@angular/common';
+import {MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
+import {NgIf, NgOptimizedImage, NgTemplateOutlet} from '@angular/common';
 import {MatFabButton} from '@angular/material/button';
 
 
@@ -18,8 +18,8 @@ import {MatFabButton} from '@angular/material/button';
         NgTemplateOutlet,
         MatFabButton,
         MatCardTitle,
-        MatCardSubtitle,
-        NgIf
+        NgIf,
+        NgOptimizedImage
     ],
     templateUrl: './product-card.component.html',
     styleUrl: './product-card.component.scss'

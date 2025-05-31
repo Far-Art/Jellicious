@@ -7,7 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialog} from '@angular/material/dialog';
 import {ProductManageCardComponent} from './product-manage-card/product-manage-card.component';
-import {Ingredient} from '../../shared/model/Ingredient';
+import {APP_CATEGORIES} from '../../app.constants';
 
 
 @Component({
@@ -23,11 +23,11 @@ import {Ingredient} from '../../shared/model/Ingredient';
 })
 export class AdminComponent implements OnInit {
 
-    protected products: Product[] = [];
-    protected ingredients: Ingredient[] = [];
+    protected categories = APP_CATEGORIES;
 
-    protected productsColumns = ['img', 'name', 'description', 'category', 'actionBtns'];
-    protected ingredientsColumns = ['icon', 'name', 'price', 'type', 'actionBtns'];
+    protected products: Product[] = [];
+
+    protected productsColumns = ['img', 'name', 'description', 'category', 'price', 'newPrice', 'actionBtns'];
 
     constructor(private productsService: ProductsService, private dialog: MatDialog) {}
 

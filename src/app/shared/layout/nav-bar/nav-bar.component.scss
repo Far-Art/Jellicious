@@ -19,6 +19,14 @@ nav {
         justify-content: space-between;
     }
 
+    .logo-button {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+    }
+
     .logo {
         filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.4));
     }
