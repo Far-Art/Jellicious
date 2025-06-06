@@ -1,4 +1,9 @@
 section {
-  width: 400px;
-  height: 100svh;
+    width: 500px;
+    height: 100svh;
+
+    img {
+        border-radius: 10px;
+        overflow: hidden;
+    }
 }
