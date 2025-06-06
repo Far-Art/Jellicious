@@ -21,7 +21,6 @@ import {MatAnchor} from '@angular/material/button';
                 display: grid;
                 grid-template-rows: auto 1fr auto;
                 min-height: 100svh;
-                background-color: var(--background-surface);
 
                 .skip-link {
                     position: absolute;

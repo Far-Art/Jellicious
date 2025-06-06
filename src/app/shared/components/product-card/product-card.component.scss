@@ -3,6 +3,10 @@
         height: 100%;
         overflow: hidden;
 
+        mat-card-content {
+            flex-grow: 1;
+        }
+
         mat-card-actions {
             align-items: center;
             justify-content: center;
@@ -85,6 +89,10 @@
 
         img {
             user-select: none;
+        }
+
+        h4 {
+            color: var(--mat-sys-primary);
         }
 
         .mat-mdc-card-title {

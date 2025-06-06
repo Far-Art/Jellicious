@@ -182,6 +182,7 @@ html {
     color-scheme: dark;
     color: white;
     font-family: 'Rubik', sans-serif;
+    background-color: var(--background-surface);
 
     @include mat.theme((
       color: (

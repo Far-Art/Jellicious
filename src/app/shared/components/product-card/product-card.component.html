@@ -1,6 +1,6 @@
 <!--TODO continue with accessibility-->
 <mat-card class="product-card" appearance="outlined" role="group" [attr.aria-labelledby]="'card-title' + product.id">
-    <img [draggable]="false" mat-card-image [src]="product.imageUrl" alt="תמונה של {{product.name}}">
+    <img [draggable]="false" fetchpriority="high" mat-card-image [src]="product.imageUrl" alt="תמונה של {{product.name}}">
     <mat-card-header>
         <mat-card-title>
             <h4 [id]="'card-title' + product.id">{{ product.name }}</h4>

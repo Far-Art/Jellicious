@@ -38,7 +38,7 @@
 
             <ng-container matColumnDef="price">
                 <th mat-header-cell *matHeaderCellDef>מחיר</th>
-                <td mat-cell *matCellDef="let row"> {{ row.product.price }}</td>
+                <td mat-cell *matCellDef="let row" [attr.aria-label]="row.product.price + ' שקלים'"> {{ row.product.price }}</td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

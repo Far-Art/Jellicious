@@ -17,19 +17,37 @@ import {MatButton} from '@angular/material/button';
     styles: [`
         :host {
             display: contents;
-            
+
             button {
                 margin-inline: 0.5rem;
             }
-            
+
             .button-label {
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 gap: 0.4rem;
             }
 
             .material-symbols-outlined {
                 font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            :host {
+                button {
+                    //font-size: 2rem;
+                    //height: 100%;
+                }
+
+                .button-label {
+                    //flex-direction: column;
+                }
+
+                .material-symbols-outlined {
+                    //font-size: 3rem;
+                }
             }
         }
     `]
