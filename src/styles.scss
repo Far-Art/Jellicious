@@ -1,18 +1,33 @@
+html {
+    min-height: 100%;
+
+    .bg-pattern {
+        position: absolute;
+        height: 100%;
+        inset: 0;
+        z-index: -1;
+    }
+}
+
 html, body {
-  margin: 0;
-  height: 100%;
-  direction: rtl;
-  scroll-behavior: smooth;
+    margin: 0;
+    direction: rtl;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+body {
+    --nav-bar-height: 100px;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 router-outlet {
-  display: contents;
+    display: contents;
 }
 
 h1,
@@ -21,9 +36,5 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
-}
-
-.cdk-global-scrollblock {
-  scrollbar-gutter: stable;
+    margin: 0;
 }

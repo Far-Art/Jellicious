@@ -33,23 +33,6 @@ import {MatButton} from '@angular/material/button';
                 font-size: 1.7rem;
             }
         }
-
-        @media (max-width: 767.98px) {
-            :host {
-                button {
-                    //font-size: 2rem;
-                    //height: 100%;
-                }
-
-                .button-label {
-                    //flex-direction: column;
-                }
-
-                .material-symbols-outlined {
-                    //font-size: 3rem;
-                }
-            }
-        }
     `]
 })
 export class MenuButtonComponent {

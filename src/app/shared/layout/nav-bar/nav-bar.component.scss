@@ -5,6 +5,7 @@
 }
 
 nav {
+    height: var(--nav-bar-height);
     position: relative;
     display: flex;
     flex-direction: row-reverse;

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgForOf, NgOptimizedImage} from '@angular/common';
+import {NgOptimizedImage} from '@angular/common';
 import {ShoppingService} from '../../services/shopping.service';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MenuButtonComponent} from './menu-button/menu-button.component';
@@ -18,8 +18,7 @@ export type NavItem = {
     imports: [
         NgOptimizedImage,
         MatToolbarModule,
-        MenuButtonComponent,
-        NgForOf
+        MenuButtonComponent
     ],
     templateUrl: './nav-bar.component.html',
     styleUrl: './nav-bar.component.scss'

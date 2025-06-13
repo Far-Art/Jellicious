@@ -51,7 +51,9 @@
     <ng-template #add_to_cart>
         <span aria-hidden="true">הוסף לסל</span>
         <span aria-hidden="true" [class.line-through]="product.newPrice">₪{{ product.price }}</span>
-        <span aria-hidden="true" *ngIf="product.newPrice">₪{{ product.newPrice }}</span>
+        @if (product.newPrice) {
+            <span aria-hidden="true">₪{{ product.newPrice }}</span>
+        }
     </ng-template>
     <ng-template #in_cart_amount>
         <span aria-hidden="true">{{ amount }}</span>

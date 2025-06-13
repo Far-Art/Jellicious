@@ -184,6 +184,12 @@ html {
     font-family: 'Rubik', sans-serif;
     background-color: var(--background-surface);
 
+    .bg-pattern {
+        background-image: url("/assets/theme/web-pattern.svg");
+        background-size: 25%;
+        opacity: 0.06;
+    }
+
     @include mat.theme((
       color: (
         primary: $primary-palette,

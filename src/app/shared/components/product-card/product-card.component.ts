@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ShoppingService} from '../../services/shopping.service';
 import {Product} from '../../model/Product';
 import {MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
-import {NgIf, NgTemplateOutlet} from '@angular/common';
+import {NgTemplateOutlet} from '@angular/common';
 import {MatFabButton} from '@angular/material/button';
 
 
@@ -17,8 +17,7 @@ import {MatFabButton} from '@angular/material/button';
         MatCardActions,
         NgTemplateOutlet,
         MatFabButton,
-        MatCardTitle,
-        NgIf
+        MatCardTitle
     ],
     templateUrl: './product-card.component.html',
     styleUrl: './product-card.component.scss'
