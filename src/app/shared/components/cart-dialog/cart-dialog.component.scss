@@ -6,4 +6,24 @@ section {
         border-radius: 10px;
         overflow: hidden;
     }
+
+    button[mat-mini-fab] {
+        width: 6rem;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    table {
+        user-select: none;
+
+        tr[mat-row] {
+            color: var(--mat-sys-primary);
+        }
+
+        .footer-row {
+            background-color: var(--mat-sys-primary-container);
+            font-weight: bold;
+        }
+    }
+
 }

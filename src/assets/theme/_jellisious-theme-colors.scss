@@ -216,6 +216,12 @@ html {
         user-select: none;
     }
 
+    .snackbar-warning {
+        --mat-snack-bar-container-color: #ffdd78;
+        --mat-snack-bar-supporting-text-weight: 500;
+        --mat-snack-bar-supporting-text-size: 1.06rem;
+    }
+
     @include mat.card-overrides((
       subtitle-text-color: map.get(map.get($_palettes, primary), 25),
       elevated-container-color: map.get(map.get($_palettes, primary), 25),
@@ -236,4 +242,6 @@ html {
             outline: none;
         }
     }
+
+
 }

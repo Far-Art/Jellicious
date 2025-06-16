@@ -15,6 +15,8 @@ import {Component, HostBinding, Input, OnChanges, SimpleChanges} from '@angular/
         `
             .grid-auto-fill {
                 --grid-gap: 2rem;
+
+                margin-inline: 2rem;
             }
 
             .section-title {
@@ -25,10 +27,16 @@ import {Component, HostBinding, Input, OnChanges, SimpleChanges} from '@angular/
                 padding: 1rem 0.5rem;
                 user-select: none;
                 color: var(--mat-sys-primary);
-                
+
                 &.sticky {
-                    background-color: hsl(from var(--mat-sys-on-tertiary-fixed) h s l / .5);
-                    backdrop-filter: blur(20px);
+                    --shadow-color: hsl(308deg 60% 8% / 20%);
+                    background-color: hsl(from var(--mat-sys-on-tertiary-fixed) h s l / .65);
+                    backdrop-filter: blur(25px);
+                    box-shadow: 1px 2px 2px var(--shadow-color),
+                    2px 4px 4px var(--shadow-color),
+                    4px 8px 8px var(--shadow-color),
+                    8px 16px 16px var(--shadow-color),
+                    16px 32px 32px var(--shadow-color);
                 }
             }
         `

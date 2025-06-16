@@ -10,3 +10,8 @@ export const APP_INGREDIENT_TYPES = {
     chocolate: 'שוקולד',
     alcohol: 'אלכוהול'
 }
+
+export const APP_CONSTANTS = {
+    maxProductsPerRequest: 5,
+    maxProductsPerDay: 5,
+}

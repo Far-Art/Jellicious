@@ -10,7 +10,7 @@ import {ProductsService} from '../../shared/services/products.service';
     selector: 'jls-home',
     imports: [
         ProductCardComponent,
-        CategorySectionComponent
+        CategorySectionComponent,
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'

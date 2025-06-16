@@ -4,6 +4,7 @@ import {BehaviorSubject, map, Observable, of} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {CartDialogComponent} from '../components/cart-dialog/cart-dialog.component';
 import {SelectionModel} from '@angular/cdk/collections';
+import {APP_CONSTANTS} from '../../app.constants';
 
 
 @Injectable({
@@ -38,6 +39,16 @@ export class ShoppingService {
     }
 
     increaseProductAmount(productId: number): void {
+        const totalAmount = this.totalAmount;
+        if (totalAmount >= APP_CONSTANTS.maxProductsPerRequest) {
+            this.snackBar.open(`לא ניתן להוסיף יותר מ-${APP_CONSTANTS.maxProductsPerRequest} פריטים להזמנה`, 'הבנתי', {
+                duration: 3500,
+                horizontalPosition: 'center',
+                panelClass: 'snackbar-warning'
+            });
+            return;
+        }
+
         this._cartAmountMap.set(productId, (this._cartAmountMap.get(productId) ?? 0) + 1);
         this._cartSelection.select(productId);
         this.amountsUpdatedSubject.next();
@@ -52,6 +63,10 @@ export class ShoppingService {
             this._cartAmountMap.set(productId, amount);
         }
         this.amountsUpdatedSubject.next();
+    }
+
+    get totalAmount(): number {
+        return [...this._cartAmountMap.values()].reduce((acc, value) => acc + value, 0);
     }
 
     openCartDialog() {

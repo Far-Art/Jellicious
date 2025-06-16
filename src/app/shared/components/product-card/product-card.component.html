@@ -45,7 +45,11 @@
             mat-fab
             (click)="decreaseAmount()"
             aria-label="החסר פחות מהסל">
-        <span aria-hidden="true" class="material-symbols-outlined">do_not_disturb_on</span>
+        @if (amount === 1) {
+            <span aria-hidden="true" class="material-symbols-outlined">delete</span>
+        } @else {
+            <span aria-hidden="true" class="material-symbols-outlined">do_not_disturb_on</span>
+        }
     </button>
 
     <ng-template #add_to_cart>
