@@ -18,6 +18,9 @@ html, body {
 
 body {
     --nav-bar-height: 100px;
+
+    width: 100vw;
+    overflow-x: clip;
 }
 
 *,

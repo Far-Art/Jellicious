@@ -1,12 +1,18 @@
 import {Component, HostBinding, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {StickyScrollDirective} from '../../directives/sticky-scroll.directive';
 
 
 @Component({
     selector: 'jls-category-section',
     host: {role: 'group'},
-    imports: [],
+    imports: [
+        StickyScrollDirective
+    ],
     template: `
-        <h2 [id]="_id" class="section-title sticky mat-elevation-z24" aria-hidden="true">{{ title }}</h2>
+        <div jlsStickyScroll class="section-title-container">
+            <div class="section-title-background"></div>
+            <h2 [id]="_id" class="section-title" aria-hidden="true">{{ title }}</h2>
+        </div>
         <section class="grid-auto-fill">
             <ng-content />
         </section>
@@ -19,17 +25,32 @@ import {Component, HostBinding, Input, OnChanges, SimpleChanges} from '@angular/
                 margin-inline: 2rem;
             }
 
-            .section-title {
+            .section-title-container {
                 position: sticky;
                 top: var(--nav-bar-height);
                 z-index: 2;
-                font-size: 2rem;
                 padding: 1rem 0.5rem;
-                user-select: none;
-                color: var(--mat-sys-primary);
+                isolation: isolate;
 
-                &.sticky {
+                .section-title {
+                    position: relative;
+                    font-size: 2rem;
+                    user-select: none;
+                    color: var(--mat-sys-primary);
+                }
+
+                &.scrolling > .section-title-background {
+                    opacity: 1;
+                }
+
+                .section-title-background {
                     --shadow-color: hsl(308deg 60% 8% / 20%);
+
+                    opacity: 0;
+                    position: absolute;
+                    inset: 0;
+                    right: -50%;
+                    width: 150vw;
                     background-color: hsl(from var(--mat-sys-on-tertiary-fixed) h s l / .65);
                     backdrop-filter: blur(25px);
                     box-shadow: 1px 2px 2px var(--shadow-color),
@@ -37,8 +58,12 @@ import {Component, HostBinding, Input, OnChanges, SimpleChanges} from '@angular/
                     4px 8px 8px var(--shadow-color),
                     8px 16px 16px var(--shadow-color),
                     16px 32px 32px var(--shadow-color);
+                    
+                    transition: opacity 100ms ease-in-out;
                 }
             }
+
+
         `
     ]
 })
