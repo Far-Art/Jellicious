@@ -60,6 +60,10 @@ export class NavBarComponent {
         });
     }
 
+    cartBadge(){
+        return {value: this.shoppingService.totalAmount, description: `כמות פריטים בסל: ${this.shoppingService.totalAmount}`};
+    }
+
     private scrollIntoView(id: string) {
         const body = document.documentElement;
         const el = document.getElementById(id)!;

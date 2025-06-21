@@ -1,15 +1,11 @@
-<nav>
-    <mat-toolbar
-        role="menubar"
-        aria-label="שורת פעולות">
-        <jls-menu-button [navItem]="cartItem" />
-        <div>
-            @for (item of categoriesItems; track item) {
-                <jls-menu-button [navItem]="item" />
-            }
-        </div>
-        <button class="logo-button" (click)="goHome()" aria-label="כפתור מעבר לאמוד ראשי">
-            <img priority draggable="false" class="logo" ngSrc="/assets/logo.svg" alt="Jellicious logo" height="70" width="210">
-        </button>
-    </mat-toolbar>
+<nav aria-label="שורת פעולות">
+    <jls-menu-button [navItem]="cartItem" [badge]="cartBadge()" />
+    <div>
+        @for (item of categoriesItems; track item) {
+            <jls-menu-button [navItem]="item" />
+        }
+    </div>
+    <button class="logo-button" (click)="goHome()" aria-label="כפתור מעבר לאמוד ראשי">
+        <img priority draggable="false" class="logo" ngSrc="/assets/logo.svg" alt="Jellicious logo" height="70" width="210">
+    </button>
 </nav>

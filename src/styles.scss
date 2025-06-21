@@ -1,26 +1,17 @@
-html {
-    min-height: 100%;
-
-    .bg-pattern {
-        position: absolute;
-        height: 100%;
-        inset: 0;
-        z-index: -1;
-    }
-}
-
 html, body {
     margin: 0;
     direction: rtl;
     scroll-behavior: smooth;
-    position: relative;
+    scrollbar-color: var(--mat-sys-tertiary) var(--background-surface);
+    scrollbar-gutter: stable;
 }
 
 body {
     --nav-bar-height: 100px;
 
-    width: 100vw;
+    position: relative;
     overflow-x: clip;
+    min-height: 100svh;
 }
 
 *,

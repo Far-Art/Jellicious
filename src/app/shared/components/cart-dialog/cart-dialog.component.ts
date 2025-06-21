@@ -7,7 +7,6 @@ import {ProductsService} from '../../services/products.service';
 import {Product} from '../../model/Product';
 import {CurrencyPipe, NgOptimizedImage} from '@angular/common';
 import {MatCheckbox} from '@angular/material/checkbox';
-import {SelectionModel} from '@angular/cdk/collections';
 
 
 export type CartProductData = { amount: number, product: Product };
@@ -32,8 +31,8 @@ export type CartProductData = { amount: number, product: Product };
 export class CartDialogComponent implements OnInit {
 
     protected dataSource = new MatTableDataSource<CartProductData>([]);
-    protected selection = new SelectionModel<number>(true);
     protected displayedColumns = ['select', 'img', 'name', 'amount', 'price'];
+    protected selectedIds: Set<number> = new Set();
 
     constructor(
         private shoppingService: ShoppingService,
@@ -41,16 +40,18 @@ export class CartDialogComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.shoppingService.cartSelection$().subscribe(selectedIds => {
-            this.updateDataSource(selectedIds);
-        });
+        this.shoppingService.inCartIds$.subscribe(productIds => this.updateDataSource([...productIds]));
+        this.shoppingService.cartSelection$().subscribe(selectedIds => this.selectedIds = selectedIds);
     }
 
-    getTotalCost() {
-        return this.dataSource.data.map(t => (t.product.newPrice ?? t.product.price) * t.amount).reduce((acc, value) => acc + value, 0);
+    protected getTotalCost() {
+        return this.dataSource.data
+                   .filter(p => this.selectedIds.has(p.product.id))
+                   .map(t => (t.product.newPrice ?? t.product.price) * t.amount)
+                   .reduce((acc, value) => acc + value, 0);
     }
 
-    getTotalAmount() {
+    protected getTotalAmount() {
         return this.shoppingService.totalAmount;
     }
 
@@ -66,12 +67,16 @@ export class CartDialogComponent implements OnInit {
 
     }
 
+    protected toggle(id: number) {
+        this.shoppingService.toggleSelect(id);
+    }
+
     protected isAllSelected(): boolean {
-        return this.selection.selected.length === this.dataSource.data.length;
+        return this.selectedIds.size === this.dataSource.data.length;
     }
 
     protected toggleAllRows() {
-        this.isAllSelected() ? this.selection.clear() : this.selection.select(...this.dataSource.data.map(row => row.product.id));
+        this.isAllSelected() ? this.shoppingService.deselectAll() : this.shoppingService.selectAll();
     }
 
     private updateDataSource(ids: number[]) {

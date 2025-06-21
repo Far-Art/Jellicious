@@ -1,6 +1,6 @@
 :host {
     position: sticky;
-    top: 0;
+    inset: 0;
     z-index: 10;
 }
 
@@ -8,17 +8,11 @@ nav {
     height: var(--nav-bar-height);
     position: relative;
     display: flex;
-    flex-direction: row-reverse;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     padding-block: 1em;
     background-color: var(--mat-sys-on-tertiary-fixed);
-
-    mat-toolbar {
-        background-color: transparent;
-        justify-content: space-between;
-    }
 
     .logo-button {
         background: none;

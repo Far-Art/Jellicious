@@ -30,7 +30,6 @@ import {StickyScrollDirective} from '../../directives/sticky-scroll.directive';
                 top: var(--nav-bar-height);
                 z-index: 2;
                 padding: 1rem 0.5rem;
-                isolation: isolate;
 
                 .section-title {
                     position: relative;
@@ -49,7 +48,7 @@ import {StickyScrollDirective} from '../../directives/sticky-scroll.directive';
                     opacity: 0;
                     position: absolute;
                     inset: 0;
-                    right: -50%;
+                    right: -50vw;
                     width: 150vw;
                     background-color: hsl(from var(--mat-sys-on-tertiary-fixed) h s l / .65);
                     backdrop-filter: blur(25px);
