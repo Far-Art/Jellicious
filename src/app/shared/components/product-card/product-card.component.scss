@@ -18,6 +18,7 @@
         transition: width var(--timing) ease-in-out, border-radius var(--timing) ease-in-out;
 
         &.amount-button {
+            width: 120px;
             overflow: hidden;
 
             &.increase {

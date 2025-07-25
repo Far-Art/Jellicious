@@ -34,6 +34,10 @@ export class ShoppingService {
         return this.inCartIdsSubject.asObservable();
     }
 
+    get inCartIds(): Set<number> {
+        return new Set(this.inCartIdsSubject.value);
+    }
+
     toggleSelect(id: number) {
         this._cartSelection.toggle(id);
         this.selectedIdsSubject.next(new Set(this._cartSelection.selected));
@@ -97,7 +101,9 @@ export class ShoppingService {
     }
 
     openCartDialog() {
+        (document.activeElement as HTMLElement)?.blur();
         this.dialog.open(CartDialogComponent, {
+            minWidth: 600,
             position: {
                 right: '0',
                 top: '0'

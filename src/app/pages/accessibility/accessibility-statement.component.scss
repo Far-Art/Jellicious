@@ -1,0 +1,14 @@
+section {
+    height: 100%;
+    padding: 3rem 2rem;
+    background-color: hsl(from var(--background-surface) h s l / .8);
+    backdrop-filter: blur(10px);
+
+    h1 {
+        color: var(--mat-sys-primary);
+    }
+
+    h4 {
+        color: var(--mat-sys-primary-fixed);
+    }
+}

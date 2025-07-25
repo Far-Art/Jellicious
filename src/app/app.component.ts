@@ -20,6 +20,7 @@ import {MatAnchor, MatButton} from '@angular/material/button';
             :host {
                 display: grid;
                 grid-template-rows: auto 1fr auto;
+                min-height: 100svh;
 
                 .skip-link {
                     position: absolute;

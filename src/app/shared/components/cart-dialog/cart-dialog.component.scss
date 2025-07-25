@@ -1,5 +1,4 @@
 section {
-    width: 500px;
     height: 100svh;
 
     img {
@@ -16,8 +15,23 @@ section {
     table {
         user-select: none;
 
+        tr[mat-header-row] {
+            background-color: var(--mat-sys-on-primary-fixed);
+        }
+
         tr[mat-row] {
             color: var(--mat-sys-primary);
+            transition: background-color 150ms ease-in-out;
+
+            &.active {
+                background-color: var(--mat-sys-on-tertiary-fixed);
+            }
+
+            div.amount-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
         }
 
         .footer-row {
