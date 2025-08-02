@@ -24,7 +24,7 @@ export class ShoppingService {
         []
     );
 
-    constructor(private snackBar: MatSnackBar, private dialog: MatDialog) { }
+    constructor(private snackBar: MatSnackBar, private dialog: MatDialog) {}
 
     get totalAmount(): number {
         return [...this._cartAmountMap.values()].reduce((acc, value) => acc + value, 0);
@@ -70,7 +70,7 @@ export class ShoppingService {
     increaseProductAmount(productId: number): void {
         const totalAmount = this.totalAmount;
         if (totalAmount >= APP_CONSTANTS.maxProductsPerRequest) {
-            this.snackBar.open(`לא ניתן להוסיף יותר מ-${APP_CONSTANTS.maxProductsPerRequest} פריטים להזמנה`, 'הבנתי', {
+            this.snackBar.open(`לא ניתן להוסיף יותר מ-${APP_CONSTANTS.maxProductsPerRequest} פריטים להזמנה 😢`, '', {
                 duration: 3500,
                 horizontalPosition: 'center',
                 panelClass: 'snackbar-warning'

@@ -105,8 +105,9 @@ export class CartDialogComponent implements OnInit {
     }
 
     protected purchase() {
-        this.dialog.open(PurchaseDialogComponent);
-        // console.log(this.shoppingService.productAmount())
+        this.dialog.open(PurchaseDialogComponent, {
+            data: this.dataSource.data.filter(p => this.selectedIds.has(p.product.id))
+        });
     }
 
     private updateDataSource(ids: number[]) {

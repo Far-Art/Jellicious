@@ -238,7 +238,7 @@ html {
     .snackbar-warning {
         --mat-snack-bar-container-color: #ffdd78;
         --mat-snack-bar-supporting-text-weight: 500;
-        --mat-snack-bar-supporting-text-size: 1.06rem;
+        --mat-snack-bar-supporting-text-size: 1.3rem;
     }
 
     @include mat.card-overrides((

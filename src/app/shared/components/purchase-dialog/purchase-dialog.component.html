@@ -1,1 +1,47 @@
-<p>purchase-dialog works!</p>
+<h2 mat-dialog-title>יש למלא פרטים</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="form">
+        <mat-form-field class="example-full-width">
+            <mat-label>שם</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>טלפון</mat-label>
+            <input type="tel"
+                   matInput
+                   (keydown)="onPhoneKeydown($event)"
+                   placeholder="05x-xxx-xxxx"
+                   formControlName="phone">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>תאריך איסוף</mat-label>
+            <input matInput
+                   formControlName="date"
+                   [matDatepickerFilter]="dateFilter"
+                   [min]="minDate"
+                   [max]="maxDate"
+                   [matDatepicker]="datepicker">
+            <mat-datepicker [touchUi]="platform.IOS || platform.ANDROID" #datepicker />
+            <mat-datepicker-toggle [for]="datepicker" matSuffix />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>שעת איסוף</mat-label>
+            <input matInput
+                   [matTimepickerMin]="minHour"
+                   [matTimepickerMax]="maxHour"
+                   [matTimepicker]="timepicker"
+                   formControlName="time">
+            <mat-timepicker [interval]="'1h'" #timepicker />
+            <mat-timepicker-toggle [for]="timepicker" matSuffix />
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button matButton mat-dialog-close>סגור</button>
+    <button matButton [disabled]="!form.valid" (click)="submit()">אשר</button>
+</mat-dialog-actions>
