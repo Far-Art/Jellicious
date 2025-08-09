@@ -18,7 +18,7 @@ import {MatBadge} from '@angular/material/badge';
     styles: [
         `
             :host {
-                display: contents;
+                display: inline-block;
 
                 button {
                     margin-inline: 0.5rem;
@@ -35,6 +35,18 @@ import {MatBadge} from '@angular/material/badge';
 
                 .material-symbols-outlined {
                     font-size: 1.7rem;
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                :host.dynamic {
+
+                    --mat-button-text-container-height: 60px;
+
+                    .button-label {
+                        flex-direction: column;
+                        white-space: nowrap;
+                    }
                 }
             }
         `

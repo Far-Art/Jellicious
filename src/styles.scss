@@ -4,13 +4,14 @@ html, body {
     scroll-behavior: smooth;
     scrollbar-color: var(--mat-sys-tertiary) var(--background-surface);
     scrollbar-gutter: stable;
+    overflow-x: clip;
+    min-width: 300px;
 }
 
 body {
     --nav-bar-height: 100px;
 
     position: relative;
-    overflow-x: clip;
     min-height: 100svh;
 }
 
@@ -32,3 +33,18 @@ h5,
 h6 {
     margin: 0;
 }
+
+.cart-dialog {
+    --mat-dialog-container-small-max-width: 100%;
+    --mat-dialog-container-min-width: min(100%, 600px);
+
+    @media screen and (max-width: 480px) {
+        --mat-dialog-with-actions-content-padding: 0;
+    }
+}
+
+.purchase-dialog {
+    --mat-dialog-container-small-max-width: 100%;
+    --mat-dialog-container-min-width: min(100%, 380px);
+}
+

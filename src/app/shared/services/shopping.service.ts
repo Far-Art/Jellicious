@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {BehaviorSubject, map, Observable} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {CartDialogComponent} from '../components/cart-dialog/cart-dialog.component';
 import {SelectionModel} from '@angular/cdk/collections';
 import {APP_CONSTANTS} from '../../app.constants';
+import {Platform} from '@angular/cdk/platform';
 
 
 @Injectable({
@@ -18,6 +19,8 @@ export class ShoppingService {
 
     /* productId vs amount */
     private _cartAmountMap: Map<number, number> = new Map();
+
+    private platform = inject(Platform);
 
     private _cartSelection = new SelectionModel<number>(
         true,
@@ -101,9 +104,8 @@ export class ShoppingService {
     }
 
     openCartDialog() {
-        (document.activeElement as HTMLElement)?.blur();
         this.dialog.open(CartDialogComponent, {
-            minWidth: 600,
+            panelClass: 'cart-dialog',
             position: {
                 right: '0',
                 top: '0'

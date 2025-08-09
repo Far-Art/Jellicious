@@ -35,7 +35,7 @@ export type CartProductData = { amount: number, product: Product };
 export class CartDialogComponent implements OnInit {
 
     protected dataSource = new MatTableDataSource<CartProductData>([]);
-    protected displayedColumns = ['select', 'img', 'name', 'amount', 'price'];
+    protected displayedColumns = ['select', 'img_name', 'amount', 'price'];
     protected selectedIds: Set<number> = new Set();
 
     private dialog = inject(MatDialog);
@@ -106,6 +106,8 @@ export class CartDialogComponent implements OnInit {
 
     protected purchase() {
         this.dialog.open(PurchaseDialogComponent, {
+            panelClass: 'purchase-dialog',
+            disableClose: true,
             data: this.dataSource.data.filter(p => this.selectedIds.has(p.product.id))
         });
     }

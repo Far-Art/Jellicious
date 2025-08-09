@@ -38,19 +38,14 @@ export class PurchaseDialogComponent {
     }>;
     protected minDate: Date;
     protected maxDate: Date;
-    protected minHour = new Date(0, 0, 0, 8, 0, 0, 0);
+    protected minHour = new Date(0, 0, 0, 10, 0, 0, 0);
     protected maxHour = new Date(0, 0, 0, 16, 0, 0, 0);
     private phoneRegex = /^(?:\+972|0)5\d(?:[-\s]?\d){7}$/;
     private fb = inject(FormBuilder);
     private dialogData: CartProductData[] = inject(MAT_DIALOG_DATA);
 
     constructor() {
-        const now = new Date();
-        if (now.getMinutes() >= 30) {
-            now.setHours(now.getHours() + 2, 0, 0, 0);
-        } else {
-            now.setHours(now.getHours() + 1, 0, 0, 0);
-        }
+        const now = this.initDate();
 
         this.minDate = now;
         this.maxDate = new Date(now.getFullYear(), now.getMonth() + 5, now.getDate() + 1);
@@ -69,7 +64,7 @@ export class PurchaseDialogComponent {
                 date.setHours(time.getHours(), time.getMinutes());
                 this.form.controls.time.setValue(date, {emitEvent: false});
             }
-        })
+        });
     }
 
     onPhoneKeydown(event: KeyboardEvent) {
@@ -125,12 +120,34 @@ export class PurchaseDialogComponent {
         }
 
         console.log(order)
-
     }
 
     protected dateFilter = (date: Date | null): boolean => {
         const day = date?.getDay();
         return day !== 5 && day !== 6;
+    }
+
+    private initDate(): Date {
+        const now = new Date();
+
+        if (now.getHours() > this.maxHour.getHours() || !this.dateFilter(now)) {
+            while (now.getHours() > this.maxHour.getHours() || !this.dateFilter(now)) {
+                this.toNextDay(now);
+            }
+            return now;
+        }
+
+        if (now.getMinutes() >= 30) {
+            now.setHours(now.getHours() + 2, 0, 0, 0);
+        } else {
+            now.setHours(now.getHours() + 1, 0, 0, 0);
+        }
+        return now;
+    }
+
+    private toNextDay(date: Date): void {
+        date.setDate(date.getDate() + 1);
+        date.setHours(this.minHour.getHours(), 0, 0, 0);
     }
 
 }

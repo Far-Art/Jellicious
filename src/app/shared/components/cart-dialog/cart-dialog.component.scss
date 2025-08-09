@@ -27,16 +27,35 @@ section {
                 background-color: var(--mat-sys-on-tertiary-fixed);
             }
 
+            div.product-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-block: 1rem;
+            }
+
             div.amount-container {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
+
+                > span {
+                    margin-inline: 0.5rem;
+                }
             }
         }
 
         .footer-row {
             background-color: var(--mat-sys-primary-container);
             font-weight: bold;
+        }
+
+        @media screen and (max-width: 480px) {
+            tr {
+                td:nth-child(2), th:nth-child(2) {
+                    padding: 0;
+                }
+            }
         }
     }
 

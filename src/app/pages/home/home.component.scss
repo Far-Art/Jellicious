@@ -6,8 +6,9 @@
         display: flex;
         flex-direction: column;
         gap: 4rem;
-        max-width: 1350px;
+        max-width: min(100vw, 1350px);
         margin-bottom: 3rem;
+        min-width: 300px;
     }
 }
 

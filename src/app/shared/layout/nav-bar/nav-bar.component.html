@@ -1,8 +1,8 @@
 <nav aria-label="שורת פעולות">
     <jls-menu-button [navItem]="cartItem" [badge]="cartBadge()" />
-    <div>
+    <div class="category-buttons">
         @for (item of categoriesItems; track item) {
-            <jls-menu-button [navItem]="item" />
+            <jls-menu-button class="dynamic" [navItem]="item" />
         }
     </div>
     <button class="logo-button" (click)="goHome()" aria-label="כפתור מעבר לאמוד ראשי">
