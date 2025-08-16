@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {ContactsService} from '../../shared/services/contacts.service';
 
 
 type Statement = {
@@ -13,6 +14,8 @@ type Statement = {
     styleUrl: './accessibility-statement.component.scss'
 })
 export class AccessibilityStatementComponent {
+
+    contacts: ContactsService = inject(ContactsService);
 
     protected readonly statements: Statement[] = [
         {

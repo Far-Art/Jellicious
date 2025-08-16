@@ -5,7 +5,7 @@ export interface IOrder {
     id: string;
     products: Product[];
     totalPrice: number
-    name: string;
-    phoneNumber: string;
+    name?: string;
+    phoneNumber?: string;
     dateOfPickup: string;
 }

@@ -19,6 +19,7 @@
 
 <ng-template #action_buttons_template>
     <button [attr.aria-hidden]="!isInCartTemplate"
+            #increaseButton
             [disabled]="!isInCartTemplate"
             class="amount-button increase"
             [class.visible]="isInCartTemplate"
@@ -29,21 +30,28 @@
     </button>
 
     <button [disableRipple]="isInCartTemplate"
+            #addButton
             class="add-to-cart-button"
             [class.shrunk]="isInCartTemplate"
             [attr.aria-label]="buttonLabel"
+            [tabindex]="isInCartTemplate ? -1 : 0"
             mat-fab
             extended
-            (click)="isInCartTemplate ? noop() : addToCart()">
+            (mouseup)="addToCart()"
+            (keydown.enter)="addToCart($event)"
+            (keydown.space)="addToCart($event)">
         <ng-container *ngTemplateOutlet="isInCartTemplate ? in_cart_amount : add_to_cart"></ng-container>
     </button>
 
     <button [attr.aria-hidden]="!isInCartTemplate"
+            #decreaseButton
             [disabled]="!isInCartTemplate"
             class="amount-button decrease"
             [class.visible]="isInCartTemplate"
             mat-fab
-            (click)="decreaseAmount()"
+            (mouseup)="decreaseAmount()"
+            (keydown.enter)="decreaseAmount($event)"
+            (keydown.space)="decreaseAmount($event)"
             aria-label="החסר פחות מהסל">
         @if (amount === 1) {
             <span aria-hidden="true" class="material-symbols-outlined">delete</span>

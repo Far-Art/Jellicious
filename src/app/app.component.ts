@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {Component, inject, OnInit} from '@angular/core';
+import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {NavBarComponent} from './shared/layout/nav-bar/nav-bar.component';
 import {FooterComponent} from './shared/layout/footer/footer.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatAnchor, MatButton} from '@angular/material/button';
+import {filter} from 'rxjs';
 
 
 @Component({
@@ -40,6 +41,17 @@ import {MatAnchor, MatButton} from '@angular/material/button';
         `
     ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'Jellicious';
+
+    private router: Router = inject(Router);
+
+    ngOnInit(): void {
+        this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+            setTimeout(() => {
+                document.documentElement.scrollTo({top: 0});
+            })
+        });
+    }
+
 }

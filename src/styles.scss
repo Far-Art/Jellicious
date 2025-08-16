@@ -1,3 +1,7 @@
+:root {
+    --nav-bar-height: 85px;
+}
+
 html, body {
     margin: 0;
     direction: rtl;
@@ -6,13 +10,12 @@ html, body {
     scrollbar-gutter: stable;
     overflow-x: clip;
     min-width: 300px;
+    min-height: 100svh;
+    scroll-padding-top: var(--nav-bar-height);
 }
 
 body {
-    --nav-bar-height: 100px;
-
     position: relative;
-    min-height: 100svh;
 }
 
 *,

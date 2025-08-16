@@ -31,8 +31,8 @@ import {IOrder} from '../../model/Order';
 export class PurchaseDialogComponent {
     platform = inject(Platform);
     protected form: FormGroup<{
-        name: FormControl<string | null>,
-        phone: FormControl<string | null>,
+        // name: FormControl<string | null>,
+        // phone: FormControl<string | null>,
         date: FormControl<Date | null>,
         time: FormControl<Date | null>
     }>;
@@ -51,8 +51,8 @@ export class PurchaseDialogComponent {
         this.maxDate = new Date(now.getFullYear(), now.getMonth() + 5, now.getDate() + 1);
 
         this.form = this.fb.group({
-            name: this.fb.control<string | null>(null, [Validators.required, Validators.minLength(3), Validators.minLength(3), Validators.maxLength(20)]),
-            phone: this.fb.control<string | null>(null, [Validators.required, Validators.pattern(this.phoneRegex)]),
+            // name: this.fb.control<string | null>(null, [Validators.required, Validators.minLength(3), Validators.minLength(3), Validators.maxLength(20)]),
+            // phone: this.fb.control<string | null>(null, [Validators.required, Validators.pattern(this.phoneRegex)]),
             date: this.fb.control(now, [Validators.required]),
             time: this.fb.control(now, [Validators.required])
         });
@@ -111,15 +111,14 @@ export class PurchaseDialogComponent {
         const d = new Date(value.date!.getFullYear(), value.date!.getMonth(), value.date!.getDate(), value.time!.getHours(), value.time!.getMinutes(), 0, 0);
 
         const order: IOrder = {
-            name: value.name!,
-            phoneNumber: value.phone!.replaceAll('-', ''),
+            // name: value.name!,
+            // phoneNumber: value.phone!.replaceAll('-', ''),
             products: products,
             totalPrice: totalPrice,
             dateOfPickup: `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}0`,
             id: Math.random().toString(36).replace('.', '')
         }
 
-        console.log(order)
     }
 
     protected dateFilter = (date: Date | null): boolean => {
@@ -130,24 +129,19 @@ export class PurchaseDialogComponent {
     private initDate(): Date {
         const now = new Date();
 
-        if (now.getHours() > this.maxHour.getHours() || !this.dateFilter(now)) {
-            while (now.getHours() > this.maxHour.getHours() || !this.dateFilter(now)) {
-                this.toNextDay(now);
-            }
-            return now;
+        this.plusDays(now, now.getHours() >= 17 || !this.dateFilter(now) ? 2 : 1);
+
+        while (now.getHours() > this.maxHour.getHours() || !this.dateFilter(now)) {
+            this.plusDays(now, 1);
         }
 
-        if (now.getMinutes() >= 30) {
-            now.setHours(now.getHours() + 2, 0, 0, 0);
-        } else {
-            now.setHours(now.getHours() + 1, 0, 0, 0);
-        }
         return now;
     }
 
-    private toNextDay(date: Date): void {
-        date.setDate(date.getDate() + 1);
+    private plusDays(date: Date, days: number): Date {
+        date.setDate(date.getDate() + days);
         date.setHours(this.minHour.getHours(), 0, 0, 0);
+        return date;
     }
 
 }

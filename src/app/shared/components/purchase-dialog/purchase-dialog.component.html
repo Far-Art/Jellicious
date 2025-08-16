@@ -2,23 +2,26 @@
 
 <mat-dialog-content>
     <form [formGroup]="form">
-        <mat-form-field class="example-full-width">
-            <mat-label>שם</mat-label>
-            <input matInput formControlName="name">
-        </mat-form-field>
+<!--        <mat-form-field class="example-full-width">-->
+<!--            <mat-label>שם</mat-label>-->
+<!--            <input matInput formControlName="name">-->
+<!--        </mat-form-field>-->
 
-        <mat-form-field class="example-full-width">
-            <mat-label>טלפון</mat-label>
-            <input type="tel"
-                   matInput
-                   (keydown)="onPhoneKeydown($event)"
-                   placeholder="05x-xxx-xxxx"
-                   formControlName="phone">
-        </mat-form-field>
+<!--        <mat-form-field class="example-full-width">-->
+<!--            <mat-label>טלפון</mat-label>-->
+<!--            <input type="tel"-->
+<!--                   matInput-->
+<!--                   (keydown)="onPhoneKeydown($event)"-->
+<!--                   placeholder="05x-xxx-xxxx"-->
+<!--                   formControlName="phone">-->
+<!--        </mat-form-field>-->
 
         <mat-form-field>
             <mat-label>תאריך איסוף</mat-label>
             <input matInput
+                   readonly
+                   style="cursor: pointer"
+                   (click)="$event.preventDefault(); datepicker.open();"
                    formControlName="date"
                    [matDatepickerFilter]="dateFilter"
                    [min]="minDate"
@@ -31,6 +34,7 @@
         <mat-form-field>
             <mat-label>שעת איסוף</mat-label>
             <input matInput
+                   readonly
                    [matTimepickerMin]="minHour"
                    [matTimepickerMax]="maxHour"
                    [matTimepicker]="timepicker"

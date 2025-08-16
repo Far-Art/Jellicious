@@ -65,15 +65,8 @@ export class NavBarComponent {
     }
 
     private scrollIntoView(id: string) {
-        const body = document.documentElement;
         const el = document.getElementById(id)!;
-        const top = el.getBoundingClientRect().top;
-        const scrollPosition = top - body.scrollTop + body.scrollTop - 100;
-
-        body.scrollTo({
-            top: scrollPosition,
-            behavior: 'smooth'
-        });
+        el.scrollIntoView({behavior: 'smooth', block: 'start'});
     }
 
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {ShoppingService} from '../../services/shopping.service';
 import {Product} from '../../model/Product';
 import {MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
@@ -24,6 +24,14 @@ import {MatFabButton} from '@angular/material/button';
 })
 
 export class ProductCardComponent implements OnInit {
+    @ViewChild('increaseButton', {read: ElementRef})
+    increaseButtonRef!: ElementRef<HTMLButtonElement>;
+
+    @ViewChild('addButton', {read: ElementRef})
+    addButtonRef!: ElementRef<HTMLButtonElement>;
+
+    @ViewChild('decreaseButton', {read: ElementRef})
+    decreaseButtonRef!: ElementRef<HTMLButtonElement>;
 
     @Input({required: true}) product!: Product;
 
@@ -43,19 +51,42 @@ export class ProductCardComponent implements OnInit {
             });
     }
 
-    addToCart(): void {
-        this.shoppingService.increaseProductAmount(this.product.id);
+    addToCart(event?: Event): void {
+        if (!this.isInCartTemplate) {
+            this.shoppingService.increaseProductAmount(this.product.id);
+            if (event) {
+                this.focusButton('increase-button');
+            }
+        }
     }
 
     increaseAmount(): void {
         this.shoppingService.increaseProductAmount(this.product.id);
     }
 
-    decreaseAmount(): void {
+    decreaseAmount(event?: Event): void {
         this.shoppingService.decreaseProductAmount(this.product.id);
+        if (this.amount === 0 && event) {
+            this.focusButton('add-button');
+        }
     }
 
-    noop(): void {}
+    focusButton(element: 'increase-button' | 'add-button' | 'delete-button') {
+        let el: HTMLButtonElement;
+        if (element === 'increase-button') {
+            el = this.increaseButtonRef.nativeElement;
+        } else if (element === 'add-button') {
+            el = this.addButtonRef.nativeElement;
+        } else if (element === 'delete-button') {
+            el = this.decreaseButtonRef.nativeElement;
+        } else {
+            throw new Error('Invalid element');
+        }
+
+        setTimeout(() => {
+            el?.focus();
+        })
+    }
 
     private updateButtonLabel() {
         if (this.isInCartTemplate) {
