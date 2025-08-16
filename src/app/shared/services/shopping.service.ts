@@ -6,6 +6,7 @@ import {CartDialogComponent} from '../components/cart-dialog/cart-dialog.compone
 import {SelectionModel} from '@angular/cdk/collections';
 import {APP_CONSTANTS} from '../../app.constants';
 import {Platform} from '@angular/cdk/platform';
+import {AmountWarningSnackComponent} from '../components/amount-warning-snack/amount-warning-snack.component';
 
 
 @Injectable({
@@ -73,10 +74,9 @@ export class ShoppingService {
     increaseProductAmount(productId: number): void {
         const totalAmount = this.totalAmount;
         if (totalAmount >= APP_CONSTANTS.maxProductsPerRequest) {
-            this.snackBar.open(`לא ניתן להוסיף יותר מ-${APP_CONSTANTS.maxProductsPerRequest} פריטים להזמנה 😢`, '', {
-                duration: 3500,
-                horizontalPosition: 'center',
-                panelClass: 'snackbar-warning'
+            this.snackBar.openFromComponent(AmountWarningSnackComponent, {
+                panelClass: 'snackbar-warning',
+                duration: 7000
             });
             return;
         }
@@ -104,6 +104,7 @@ export class ShoppingService {
     }
 
     openCartDialog() {
+        if (this.inCartIdsSubject.value.size === 0) return;
         this.dialog.open(CartDialogComponent, {
             panelClass: 'cart-dialog',
             position: {
