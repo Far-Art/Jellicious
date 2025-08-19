@@ -1,8 +1,8 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, ViewChild} from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatTimepickerModule} from '@angular/material/timepicker';
+import {MatTimepicker, MatTimepickerModule} from '@angular/material/timepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MAT_DIALOG_DATA, MatDialogModule} from '@angular/material/dialog';
@@ -29,6 +29,7 @@ import {IOrder} from '../../model/Order';
     styleUrl: './purchase-dialog.component.scss'
 })
 export class PurchaseDialogComponent {
+    @ViewChild('timepicker') timepicker!: MatTimepicker<any>;
     platform = inject(Platform);
     protected form: FormGroup<{
         // name: FormControl<string | null>,
@@ -94,6 +95,15 @@ export class PurchaseDialogComponent {
             event.preventDefault();
         }
 
+    }
+
+    openTimepicker(event: KeyboardEvent): void {
+        if (event.key === 'Enter' || (+event.key >= 0 && +event.key <= 9)) {
+            if (!this.timepicker.isOpen()) {
+                event.stopPropagation();
+                this.timepicker.open();
+            }
+        }
     }
 
     submit() {

@@ -2,19 +2,19 @@
 
 <mat-dialog-content>
     <form [formGroup]="form">
-<!--        <mat-form-field class="example-full-width">-->
-<!--            <mat-label>שם</mat-label>-->
-<!--            <input matInput formControlName="name">-->
-<!--        </mat-form-field>-->
+        <!--        <mat-form-field class="example-full-width">-->
+        <!--            <mat-label>שם</mat-label>-->
+        <!--            <input matInput formControlName="name">-->
+        <!--        </mat-form-field>-->
 
-<!--        <mat-form-field class="example-full-width">-->
-<!--            <mat-label>טלפון</mat-label>-->
-<!--            <input type="tel"-->
-<!--                   matInput-->
-<!--                   (keydown)="onPhoneKeydown($event)"-->
-<!--                   placeholder="05x-xxx-xxxx"-->
-<!--                   formControlName="phone">-->
-<!--        </mat-form-field>-->
+        <!--        <mat-form-field class="example-full-width">-->
+        <!--            <mat-label>טלפון</mat-label>-->
+        <!--            <input type="tel"-->
+        <!--                   matInput-->
+        <!--                   (keydown)="onPhoneKeydown($event)"-->
+        <!--                   placeholder="05x-xxx-xxxx"-->
+        <!--                   formControlName="phone">-->
+        <!--        </mat-form-field>-->
 
         <mat-form-field>
             <mat-label>תאריך איסוף</mat-label>
@@ -22,13 +22,14 @@
                    readonly
                    style="cursor: pointer"
                    (click)="$event.preventDefault(); datepicker.open();"
+                   (keydown.enter)="$event.preventDefault(); datepicker.open();"
                    formControlName="date"
                    [matDatepickerFilter]="dateFilter"
                    [min]="minDate"
                    [max]="maxDate"
                    [matDatepicker]="datepicker">
             <mat-datepicker [touchUi]="platform.IOS || platform.ANDROID" #datepicker />
-            <mat-datepicker-toggle [for]="datepicker" matSuffix />
+            <mat-datepicker-toggle disabled [for]="datepicker" matSuffix />
         </mat-form-field>
 
         <mat-form-field>
@@ -36,11 +37,12 @@
             <input matInput
                    readonly
                    [matTimepickerMin]="minHour"
+                   (keydown)="openTimepicker($event);"
                    [matTimepickerMax]="maxHour"
                    [matTimepicker]="timepicker"
                    formControlName="time">
             <mat-timepicker [interval]="'1h'" #timepicker />
-            <mat-timepicker-toggle [for]="timepicker" matSuffix />
+            <mat-timepicker-toggle disabled [for]="timepicker" matSuffix />
         </mat-form-field>
     </form>
 </mat-dialog-content>
