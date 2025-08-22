@@ -29,7 +29,7 @@
                    [max]="maxDate"
                    [matDatepicker]="datepicker">
             <mat-datepicker [touchUi]="platform.IOS || platform.ANDROID" #datepicker />
-            <mat-datepicker-toggle disabled [for]="datepicker" matSuffix />
+            <mat-datepicker-toggle [for]="datepicker" matSuffix />
         </mat-form-field>
 
         <mat-form-field>
@@ -42,7 +42,7 @@
                    [matTimepicker]="timepicker"
                    formControlName="time">
             <mat-timepicker [interval]="'1h'" #timepicker />
-            <mat-timepicker-toggle disabled [for]="timepicker" matSuffix />
+            <mat-timepicker-toggle [for]="timepicker" matSuffix />
         </mat-form-field>
     </form>
 </mat-dialog-content>

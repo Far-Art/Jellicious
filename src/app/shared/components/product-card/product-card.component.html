@@ -1,5 +1,5 @@
 <!--TODO continue with accessibility-->
-<mat-card class="product-card" appearance="outlined" role="group" [attr.aria-labelledby]="'card-title' + product.id">
+<mat-card class="product-card" appearance="outlined" role="group" [attr.aria-labelledby]="'card-title' + product.id" [class.in-cart]="isInCartTemplate">
     <img [draggable]="false" fetchpriority="high" mat-card-image [src]="product.imageUrl" alt="תמונה של {{product.name}}">
     <mat-card-header>
         <mat-card-title>

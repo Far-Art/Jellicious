@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostBinding, Input, OnInit, ViewChild} from '@angular/core';
 import {ShoppingService} from '../../services/shopping.service';
 import {Product} from '../../model/Product';
 import {MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
@@ -35,8 +35,8 @@ export class ProductCardComponent implements OnInit {
 
     @Input({required: true}) product!: Product;
 
-    protected buttonLabel!: string;
     protected isInCartTemplate = false;
+    protected buttonLabel!: string;
     protected amount = 0;
 
     constructor(private shoppingService: ShoppingService) { }
@@ -90,7 +90,6 @@ export class ProductCardComponent implements OnInit {
 
     private updateButtonLabel() {
         if (this.isInCartTemplate) {
-            // TODO check names in many later
             if (this.amount === 1) {
                 this.buttonLabel = `${this.product.name} ${this.amount} בסל`;
             } else {

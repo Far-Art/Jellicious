@@ -6,7 +6,8 @@ import {Injectable} from '@angular/core';
 })
 export class ContactsService {
 
-    public readonly email = 'lusiana@jellicious.co.il';
+    public readonly email = 'info@jellicious.co.il';
     public readonly tel = '055-9800466';
+    public readonly whatsapp = '972559800466';
 
 }
