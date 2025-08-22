@@ -1,5 +1,10 @@
 :root {
     --nav-bar-height: 85px;
+
+    @media screen and (max-width: 480px) {
+        --nav-bar-height: 145px;
+    }
+
 }
 
 html, body {
